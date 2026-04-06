@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#FFF8F0">
+<title>🇮🇹 Italiano per Spagnoli</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{
+  --cream:#FFF8F0;--paper:#FFFDF8;--ink:#2A2118;--ink2:#7A6B5E;
+  --red:#CE2B37;--green:#2E8B57;--terra:#D4714A;--blue:#4A7FB5;--gold:#C99A2E;
+  --ok:#5BA87A;--err:#CE4A5A;
+  --sh:0 2px 14px rgba(42,33,24,.10);--sh2:0 6px 28px rgba(42,33,24,.16);
+}
+html,body{height:100%}
+body{
+  font-family:'Nunito',sans-serif;background:var(--cream);color:var(--ink);
+  min-height:100dvh;max-width:480px;margin:0 auto;
+  background-image:repeating-linear-gradient(0deg,transparent,transparent 27px,rgba(0,0,0,.025) 27px,rgba(0,0,0,.025) 28px);
+}
+#app{padding-bottom:76px;min-height:100dvh;position:relative}
+
+/* NAV */
+nav{
+  position:fixed;bottom:0;left:50%;transform:translateX(-50%);
+  width:100%;max-width:480px;background:var(--paper);
+  border-top:1.5px solid rgba(42,33,24,.07);display:flex;z-index:100;
+  box-shadow:0 -4px 20px rgba(42,33,24,.08);
+}
+.nt{
+  flex:1;display:flex;flex-direction:column;align-items:center;
+  padding:9px 4px 13px;cursor:pointer;border:none;background:none;
+  color:var(--ink2);font-family:'Nunito',sans-serif;font-size:10px;font-weight:800;
+  letter-spacing:.02em;gap:2px;transition:color .2s;
+}
+.nt .ni{font-size:21px;transition:transform .2s;display:block}
+.nt.act{color:var(--terra)}
+.nt.act .ni{transform:scale(1.18)}
+
+/* SCREENS */
+.scr{display:none;padding:0 16px 20px;animation:si .25s ease}
+.scr.act{display:block}
+@keyframes si{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+/* COMMON */
+.hd{padding:52px 0 18px;text-align:center}
+.hd h1{font-family:'Playfair Display',serif;font-size:27px;font-weight:700;line-height:1.15}
+.hd p{font-size:13px;color:var(--ink2);font-weight:600;margin-top:4px}
+.card{background:var(--paper);border-radius:16px;padding:18px;box-shadow:var(--sh);margin-bottom:12px}
+.sec{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--ink2);margin-bottom:10px}
+.tag{display:inline-block;padding:3px 9px;border-radius:20px;font-size:11px;font-weight:800}
+.t-terra{background:rgba(212,113,74,.13);color:var(--terra)}
+.t-blue{background:rgba(74,127,181,.12);color:var(--blue)}
+.t-green{background:rgba(46,139,87,.12);color:var(--green)}
+.t-red{background:rgba(206,43,55,.11);color:var(--red)}
+.t-gold{background:rgba(201,154,46,.13);color:var(--gold)}
+.t-ok{background:rgba(91,168,122,.14);color:var(--ok)}
+.btn{
+  display:block;width:100%;padding:15px;border-radius:13px;border:none;
+  font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;cursor:pointer;
+  transition:transform .15s,box-shadow .15s;text-align:center;
+}
+.btn:active{transform:scale(.97)}
+.btn-p{background:linear-gradient(135deg,var(--terra),#B55830);color:#fff;box-shadow:0 4px 16px rgba(212,113,74,.35);margin-bottom:10px}
+.btn-b{background:linear-gradient(135deg,var(--blue),#3B6896);color:#fff;box-shadow:0 4px 14px rgba(74,127,181,.30);margin-bottom:10px}
+.btn-g{background:linear-gradient(135deg,var(--ok),#489068);color:#fff;box-shadow:0 4px 14px rgba(91,168,122,.32);margin-bottom:10px}
+.btn-gh{background:var(--paper);color:var(--ink);border:2px solid rgba(42,33,24,.10);margin-bottom:10px}
+.divider{height:1px;background:rgba(42,33,24,.07);margin:12px 0}
+
+/* ═══ HOME ═══ */
+.flag{display:flex;align-items:center;gap:8px;padding:56px 16px 0}
+.fb{height:6px;flex:1;border-radius:3px}
+.fb.g{background:var(--green)}.fb.r{background:var(--red)}
+.fe{font-size:30px}
+.ht{font-family:'Playfair Display',serif;font-size:29px;font-weight:700;text-align:center;padding:10px 16px 4px;line-height:1.2}
+.hs{text-align:center;color:var(--ink2);font-size:13px;font-weight:600;padding:0 16px 20px}
+.streak-c{
+  background:linear-gradient(135deg,#FFF3E8,#FFE5CE);
+  border:2px solid rgba(212,113,74,.2);border-radius:18px;
+  padding:18px 20px;display:flex;align-items:center;gap:14px;
+  margin-bottom:12px;box-shadow:var(--sh);
+}
+.sf{font-size:46px}
+.si h2{font-size:30px;font-weight:900;color:var(--terra);line-height:1}
+.si p{font-size:12px;color:var(--ink2);font-weight:700;margin-top:2px}
+.stats-r{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:12px}
+.sm{background:var(--paper);border-radius:13px;padding:13px 8px;text-align:center;box-shadow:var(--sh)}
+.sm .v{font-size:23px;font-weight:900;display:block}
+.sm .l{font-size:11px;color:var(--ink2);font-weight:700}
+.due-c{
+  background:linear-gradient(135deg,#EBF4FF,#D5E9FF);
+  border:2px solid rgba(74,127,181,.22);border-radius:18px;
+  padding:18px 20px;margin-bottom:12px;box-shadow:var(--sh);
+}
+.due-c h3{font-size:14px;color:var(--blue);font-weight:800;margin-bottom:6px}
+.due-n{font-size:38px;font-weight:900;color:var(--blue);line-height:1}
+.due-c p{font-size:12px;color:var(--ink2);font-weight:600;margin-top:4px}
+.week-progress{
+  background:var(--paper);border-radius:16px;padding:16px;box-shadow:var(--sh);margin-bottom:12px;
+}
+.week-progress h3{font-size:14px;font-weight:800;margin-bottom:10px}
+.weeks-dots{display:flex;gap:6px;flex-wrap:wrap}
+.wd{
+  width:34px;height:34px;border-radius:10px;display:flex;align-items:center;
+  justify-content:center;font-size:14px;font-weight:800;transition:all .2s;
+}
+.wd.done{background:var(--green);color:#fff}
+.wd.current{background:var(--terra);color:#fff;box-shadow:0 2px 8px rgba(212,113,74,.35)}
+.wd.future{background:rgba(42,33,24,.07);color:var(--ink2)}
+
+/* ═══ SESSION ═══ */
+.sess-top{display:flex;align-items:center;gap:10px;padding:52px 16px 14px}
+.pb-wrap{flex:1;height:8px;background:rgba(42,33,24,.08);border-radius:4px;overflow:hidden}
+.pb-fill{height:100%;background:linear-gradient(90deg,var(--terra),#E8856A);border-radius:4px;transition:width .4s ease}
+.pb-txt{font-size:12px;font-weight:800;color:var(--ink2);white-space:nowrap}
+.fc-wrap{perspective:1000px;margin:0 16px 18px;min-height:280px}
+.fc{
+  position:relative;width:100%;min-height:280px;cursor:pointer;
+  transform-style:preserve-3d;transition:transform .55s cubic-bezier(.4,0,.2,1);
+  border-radius:20px;
+}
+.fc.flipped{transform:rotateY(180deg)}
+.fc-face{
+  position:absolute;inset:0;backface-visibility:hidden;
+  -webkit-backface-visibility:hidden;border-radius:20px;padding:26px 22px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  box-shadow:var(--sh);
+}
+.fc-front{background:var(--paper);border:2px solid rgba(42,33,24,.06)}
+.fc-back{
+  background:linear-gradient(145deg,#EFF9F4,#E0F4EA);
+  border:2px solid rgba(91,168,122,.22);transform:rotateY(180deg);
+}
+.fc-topic{
+  font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;
+  padding:3px 10px;border-radius:20px;background:rgba(212,113,74,.12);
+  color:var(--terra);margin-bottom:14px;
+}
+.fc-emoji{font-size:50px;margin-bottom:10px}
+.fc-word{
+  font-family:'Playfair Display',serif;font-size:34px;font-weight:700;
+  color:var(--ink);text-align:center;margin-bottom:6px;line-height:1.15;
+}
+.fc-hint{font-size:13px;color:var(--ink2);font-weight:600;text-align:center}
+.fc-tap{font-size:12px;color:var(--ink2);font-weight:700;margin-top:18px;opacity:.65}
+.fc-trans{font-size:24px;font-weight:800;color:var(--ok);text-align:center;margin-bottom:10px}
+.fc-ex{
+  font-size:14px;color:var(--ink);text-align:center;font-style:italic;
+  line-height:1.55;font-family:'Playfair Display',serif;margin-bottom:6px;
+}
+.fc-exes{font-size:13px;color:var(--ink2);text-align:center;font-weight:600}
+.ans-btns{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 16px}
+.btn-wrong{
+  background:linear-gradient(135deg,#FFE9E9,#FFCECE);color:#B03030;
+  border:2px solid rgba(176,48,48,.18);font-weight:800;padding:14px;
+  border-radius:13px;border:none;font-family:'Nunito',sans-serif;font-size:14px;
+  cursor:pointer;transition:transform .15s;
+}
+.btn-right{
+  background:linear-gradient(135deg,#E8F7EE,#CCEDDA);color:#1E7040;
+  border:2px solid rgba(30,112,64,.18);font-weight:800;padding:14px;
+  border-radius:13px;border:none;font-family:'Nunito',sans-serif;font-size:14px;
+  cursor:pointer;transition:transform .15s;
+}
+.btn-wrong:active,.btn-right:active{transform:scale(.97)}
+.sess-empty{text-align:center;padding:50px 20px}
+.sess-empty .be{font-size:80px;margin-bottom:16px}
+.sess-empty h2{font-family:'Playfair Display',serif;font-size:22px;margin-bottom:8px}
+.sess-empty p{font-size:13px;color:var(--ink2);font-weight:600;margin-bottom:20px}
+.sess-done{padding:0 0 10px}
+.done-c{
+  background:linear-gradient(145deg,#E8F7EE,#D4F0E0);
+  border:2px solid rgba(91,168,122,.3);border-radius:20px;
+  padding:30px 22px;text-align:center;box-shadow:var(--sh);margin-bottom:12px;
+}
+.done-e{font-size:72px;margin-bottom:14px}
+.done-c h2{font-family:'Playfair Display',serif;font-size:24px;margin-bottom:6px}
+.done-c p{font-size:13px;color:var(--ink2);font-weight:600}
+.res-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}
+.res-b{border-radius:13px;padding:14px;text-align:center}
+.res-b .rn{font-size:32px;font-weight:900}
+.res-b .rl{font-size:12px;font-weight:700;color:var(--ink2)}
+.res-b.ok{background:rgba(91,168,122,.14)}.res-b.ok .rn{color:var(--ok)}
+.res-b.err{background:rgba(206,74,90,.12)}.res-b.err .rn{color:var(--err)}
+.box-inf{
+  display:flex;align-items:center;gap:8px;background:rgba(74,127,181,.09);
+  border-radius:10px;padding:8px 12px;font-size:12px;font-weight:700;color:var(--blue);
+  margin-top:8px;
+}
+
+/* ═══ PLAN ═══ */
+.wk-card{background:var(--paper);border-radius:16px;overflow:hidden;box-shadow:var(--sh);margin-bottom:10px}
+.wk-hdr{padding:13px 16px;display:flex;align-items:center;gap:12px;cursor:pointer}
+.wk-badge{
+  width:40px;height:40px;border-radius:12px;display:flex;align-items:center;
+  justify-content:center;font-size:18px;flex-shrink:0;
+}
+.wk-i{flex:1}
+.wk-i h3{font-size:14px;font-weight:800}
+.wk-i p{font-size:12px;color:var(--ink2);font-weight:600}
+.wk-arr{font-size:16px;color:var(--ink2);transition:transform .2s}
+.wk-arr.open{transform:rotate(90deg)}
+.wk-body{display:none;padding:0 16px 14px}
+.wk-body.open{display:block}
+.dy-item{display:flex;gap:10px;padding:7px 0;border-top:1px solid rgba(42,33,24,.05);font-size:12.5px}
+.dy-dot{width:8px;height:8px;border-radius:50%;margin-top:4px;flex-shrink:0}
+.dy-txt{flex:1;line-height:1.4}
+.dy-txt strong{font-weight:800;display:block;font-size:13px}
+.plan-legend{
+  background:linear-gradient(135deg,#FFF3E8,#FFE5CE);border-radius:16px;
+  padding:16px;margin-bottom:14px;box-shadow:var(--sh);
+}
+.plan-legend h3{font-size:14px;font-weight:800;margin-bottom:10px}
+.leg-r{display:flex;align-items:center;gap:8px;font-size:12.5px;margin-bottom:6px;font-weight:600}
+
+/* ═══ VOCAB ═══ */
+.vtabs{display:flex;gap:8px;margin-bottom:14px}
+.vt{
+  flex:1;padding:10px;border-radius:12px;border:none;
+  font-family:'Nunito',sans-serif;font-size:12px;font-weight:800;
+  cursor:pointer;transition:all .2s;text-align:center;background:rgba(42,33,24,.06);color:var(--ink2);
+}
+.vt.act{color:white}
+.vt.act.terra{background:var(--terra)}
+.vt.act.blue{background:var(--blue)}
+.vt.act.ok{background:var(--ok)}
+.ff-c{
+  background:var(--paper);border-radius:14px;padding:14px 16px;
+  box-shadow:var(--sh);margin-bottom:10px;
+}
+.ff-row{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;margin-bottom:8px}
+.ff-lang{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px}
+.ff-word{font-family:'Playfair Display',serif;font-size:19px;font-weight:700;line-height:1.2}
+.ff-mean{font-size:12px;color:var(--ink2);font-weight:600}
+.ff-arr{font-size:22px;color:var(--ink2)}
+.ff-warn{
+  background:rgba(201,154,46,.12);border-radius:8px;padding:7px 11px;
+  font-size:12px;color:#7A5E0A;font-weight:700;display:flex;gap:6px;
+  line-height:1.4;
+}
+.cog-c{
+  background:var(--paper);border-radius:12px;padding:12px 14px;
+  box-shadow:var(--sh);margin-bottom:8px;display:flex;align-items:center;gap:12px;
+}
+.cog-e{font-size:26px;flex-shrink:0}
+.cog-w{flex:1}
+.cog-it{font-family:'Playfair Display',serif;font-size:17px;font-weight:700}
+.cog-es{font-size:12px;color:var(--ink2);font-weight:600}
+.cog-n{font-size:11px;font-weight:800;padding:3px 8px;border-radius:20px;background:rgba(46,139,87,.11);color:var(--green);flex-shrink:0}
+
+/* ═══ STATS ═══ */
+.ring-w{display:flex;justify-content:center;padding:16px 0}
+.boxes-g{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:12px}
+.bx{background:var(--paper);border-radius:12px;padding:11px 6px;text-align:center;box-shadow:var(--sh)}
+.bx .bn{font-size:19px;font-weight:900;display:block}
+.bx .bl{font-size:10px;color:var(--ink2);font-weight:700;line-height:1.3}
+.acc-c{background:var(--paper);border-radius:14px;padding:14px 16px;box-shadow:var(--sh);margin-bottom:10px}
+.acc-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-top:1px solid rgba(42,33,24,.06);font-size:13px}
+.acc-row:first-child{border-top:none;padding-top:0}
+.acc-val{font-weight:900;font-size:15px}
+
+/* SETUP */
+.setup{
+  min-height:100dvh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;padding:32px 24px;text-align:center;
+}
+.setup-flag{font-size:80px;margin-bottom:20px;animation:bounce 1.2s infinite}
+@keyframes bounce{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+.setup h1{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;margin-bottom:8px}
+.setup p{font-size:14px;color:var(--ink2);font-weight:600;margin-bottom:6px;line-height:1.5}
+.setup ul{text-align:left;margin:14px 0;padding:0 8px}
+.setup ul li{font-size:13px;font-weight:600;padding:5px 0;display:flex;gap:8px;align-items:flex-start}
+.setup-note{
+  background:linear-gradient(135deg,#FFF3E8,#FFE5CE);border-radius:14px;
+  padding:14px 16px;margin:16px 0;font-size:13px;font-weight:700;color:var(--terra);
+  box-shadow:var(--sh);
+}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+// ═══════════════════════════════════════════════════
+// DATA
+// ═══════════════════════════════════════════════════
+
+const VOCAB = [
+  // SEMANA 1: Saluti e sopravvivenza
+  {id:1,it:"ciao",es:"hola / adiós",ex:"Ciao Maria, come stai?",exes:"Hola María, ¿cómo estás?",topic:"Saluti",w:1,e:"👋"},
+  {id:2,it:"buongiorno",es:"buenos días",ex:"Buongiorno! Come va?",exes:"¡Buenos días! ¿Cómo va?",topic:"Saluti",w:1,e:"🌅"},
+  {id:3,it:"buonasera",es:"buenas tardes / noches",ex:"Buonasera, prego accomodatevi.",exes:"Buenas tardes, por favor siéntense.",topic:"Saluti",w:1,e:"🌆"},
+  {id:4,it:"grazie",es:"gracias",ex:"Grazie mille per l'aiuto!",exes:"¡Muchas gracias por la ayuda!",topic:"Saluti",w:1,e:"🙏"},
+  {id:5,it:"prego",es:"de nada / por favor / ¡adelante!",ex:"— Grazie! — Prego!",exes:"— ¡Gracias! — ¡De nada!",topic:"Saluti",w:1,e:"😊"},
+  {id:6,it:"scusa / scusi",es:"perdón / disculpe",ex:"Scusi, dov'è il bagno?",exes:"Disculpe, ¿dónde está el baño?",topic:"Saluti",w:1,e:"🙋"},
+  {id:7,it:"per favore",es:"por favor",ex:"Un caffè, per favore.",exes:"Un café, por favor.",topic:"Basi",w:1,e:"☕"},
+  {id:8,it:"sì / no",es:"sí / no",ex:"Sì, capisco. No, non capisco.",exes:"Sí, entiendo. No, no entiendo.",topic:"Basi",w:1,e:"✅"},
+  {id:9,it:"come stai?",es:"¿cómo estás?",ex:"Ciao! Come stai oggi?",exes:"¡Hola! ¿Cómo estás hoy?",topic:"Basi",w:1,e:"🤔"},
+  {id:10,it:"bene / male",es:"bien / mal",ex:"Sto bene, grazie! E tu?",exes:"Estoy bien, ¡gracias! ¿Y tú?",topic:"Basi",w:1,e:"😄"},
+  {id:11,it:"non capisco",es:"no entiendo",ex:"Mi dispiace, non capisco.",exes:"Lo siento, no entiendo.",topic:"Basi",w:1,e:"😕"},
+  {id:12,it:"mi chiamo...",es:"me llamo...",ex:"Mi chiamo Marco, e tu?",exes:"Me llamo Marco, ¿y tú?",topic:"Basi",w:1,e:"👤"},
+  {id:13,it:"arrivederci",es:"hasta luego / adiós",ex:"Arrivederci a domani!",exes:"¡Hasta mañana!",topic:"Saluti",w:1,e:"🤚"},
+  {id:14,it:"quanto costa?",es:"¿cuánto cuesta?",ex:"Scusi, quanto costa questo?",exes:"Disculpe, ¿cuánto cuesta esto?",topic:"Basi",w:1,e:"💰"},
+  {id:15,it:"dov'è...?",es:"¿dónde está...?",ex:"Dov'è la stazione?",exes:"¿Dónde está la estación?",topic:"Domande",w:1,e:"🗺️"},
+  // SEMANA 2: Numeri, colori, famiglia
+  {id:16,it:"uno, due, tre",es:"uno, dos, tres",ex:"Vorrei tre pizze, per favore.",exes:"Quisiera tres pizzas, por favor.",topic:"Numeri",w:2,e:"1️⃣"},
+  {id:17,it:"quattro, cinque, sei",es:"cuatro, cinco, seis",ex:"La riunione è alle cinque.",exes:"La reunión es a las cinco.",topic:"Numeri",w:2,e:"5️⃣"},
+  {id:18,it:"sette, otto, nove, dieci",es:"siete, ocho, nueve, diez",ex:"Abito al piano otto.",exes:"Vivo en el piso ocho.",topic:"Numeri",w:2,e:"🔢"},
+  {id:19,it:"rosso / blu / verde",es:"rojo / azul / verde",ex:"Ho una macchina rossa.",exes:"Tengo un coche rojo.",topic:"Colori",w:2,e:"🎨"},
+  {id:20,it:"giallo / bianco / nero",es:"amarillo / blanco / negro",ex:"Il mio gatto è nero.",exes:"Mi gato es negro.",topic:"Colori",w:2,e:"⚫"},
+  {id:21,it:"madre / padre",es:"madre / padre",ex:"Mia madre si chiama Anna.",exes:"Mi madre se llama Anna.",topic:"Famiglia",w:2,e:"👩"},
+  {id:22,it:"fratello / sorella",es:"hermano / hermana",ex:"Ho un fratello e due sorelle.",exes:"Tengo un hermano y dos hermanas.",topic:"Famiglia",w:2,e:"👫"},
+  {id:23,it:"figlio / figlia",es:"hijo / hija",ex:"La mia figlia ha dieci anni.",exes:"Mi hija tiene diez años.",topic:"Famiglia",w:2,e:"👶"},
+  {id:24,it:"marito / moglie",es:"marido / esposa",ex:"Mio marito lavora a Milano.",exes:"Mi marido trabaja en Milán.",topic:"Famiglia",w:2,e:"💍"},
+  {id:25,it:"grande / piccolo",es:"grande / pequeño",ex:"Roma è una città grande.",exes:"Roma es una ciudad grande.",topic:"Descrizione",w:2,e:"📏"},
+  {id:26,it:"bello / brutto",es:"bonito / feo",ex:"Che bella giornata oggi!",exes:"¡Qué día tan bonito hoy!",topic:"Descrizione",w:2,e:"✨"},
+  {id:27,it:"vecchio / giovane",es:"viejo / joven",ex:"Questo edificio è molto vecchio.",exes:"Este edificio es muy viejo.",topic:"Descrizione",w:2,e:"👴"},
+  {id:28,it:"quando?",es:"¿cuándo?",ex:"Quando parte il treno?",exes:"¿Cuándo sale el tren?",topic:"Domande",w:2,e:"⏰"},
+  {id:29,it:"chi? / cosa?",es:"¿quién? / ¿qué?",ex:"Chi è questo? Cosa fa?",exes:"¿Quién es este? ¿Qué hace?",topic:"Domande",w:2,e:"❓"},
+  {id:30,it:"come / perché",es:"cómo / por qué",ex:"Come si chiama? Perché studi?",exes:"¿Cómo se llama? ¿Por qué estudias?",topic:"Domande",w:2,e:"🤷"},
+  // SEMANA 3: Verbi essenziali
+  {id:31,it:"essere",es:"ser / estar",ex:"Sono italiano e sono stanco.",exes:"Soy italiano y estoy cansado.",topic:"Verbi",w:3,e:"⚡"},
+  {id:32,it:"avere",es:"tener / haber",ex:"Ho fame e ho sete.",exes:"Tengo hambre y tengo sed.",topic:"Verbi",w:3,e:"🤲"},
+  {id:33,it:"andare",es:"ir",ex:"Vado al lavoro in treno.",exes:"Voy al trabajo en tren.",topic:"Verbi",w:3,e:"🚶"},
+  {id:34,it:"venire",es:"venir",ex:"Vieni con me stasera?",exes:"¿Vienes conmigo esta noche?",topic:"Verbi",w:3,e:"🏃"},
+  {id:35,it:"fare",es:"hacer",ex:"Cosa fai nel tempo libero?",exes:"¿Qué haces en tu tiempo libre?",topic:"Verbi",w:3,e:"🛠️"},
+  {id:36,it:"dire",es:"decir",ex:"Cosa vuoi dire?",exes:"¿Qué quieres decir?",topic:"Verbi",w:3,e:"💬"},
+  {id:37,it:"potere",es:"poder",ex:"Posso entrare?",exes:"¿Puedo entrar?",topic:"Verbi",w:3,e:"💪"},
+  {id:38,it:"volere",es:"querer",ex:"Voglio imparare l'italiano.",exes:"Quiero aprender italiano.",topic:"Verbi",w:3,e:"❤️"},
+  {id:39,it:"dovere",es:"deber / tener que",ex:"Devo studiare questa sera.",exes:"Tengo que estudiar esta noche.",topic:"Verbi",w:3,e:"📌"},
+  {id:40,it:"sapere",es:"saber",ex:"Sai dove si trova il museo?",exes:"¿Sabes dónde está el museo?",topic:"Verbi",w:3,e:"🧠"},
+  {id:41,it:"parlare",es:"hablar",ex:"Parli spagnolo?",exes:"¿Hablas español?",topic:"Verbi",w:3,e:"🗣️"},
+  {id:42,it:"capire",es:"entender / comprender",ex:"Non capisco, puoi ripetere?",exes:"No entiendo, ¿puedes repetir?",topic:"Verbi",w:3,e:"💡"},
+  {id:43,it:"mangiare",es:"comer",ex:"Cosa mangi a pranzo?",exes:"¿Qué comes en el almuerzo?",topic:"Verbi",w:3,e:"🍽️"},
+  {id:44,it:"bere",es:"beber",ex:"Beviamo un caffè insieme?",exes:"¿Tomamos un café juntos?",topic:"Verbi",w:3,e:"🥂"},
+  {id:45,it:"vedere",es:"ver",ex:"Hai visto quel film?",exes:"¿Has visto esa película?",topic:"Verbi",w:3,e:"👁️"},
+  // SEMANA 4: Cibo e passato prossimo
+  {id:46,it:"il pane / la pasta / la pizza",es:"el pan / la pasta / la pizza",ex:"In Italia si mangia tanta pasta.",exes:"En Italia se come mucha pasta.",topic:"Cibo",w:4,e:"🍕"},
+  {id:47,it:"la carne / il pesce",es:"la carne / el pescado",ex:"Preferisco il pesce alla carne.",exes:"Prefiero el pescado a la carne.",topic:"Cibo",w:4,e:"🐟"},
+  {id:48,it:"la verdura / la frutta",es:"la verdura / la fruta",ex:"Mangio molta frutta al giorno.",exes:"Como mucha fruta al día.",topic:"Cibo",w:4,e:"🥗"},
+  {id:49,it:"il vino / l'acqua / il caffè",es:"el vino / el agua / el café",ex:"Un vino rosso e un'acqua, grazie.",exes:"Un vino tinto y un agua, gracias.",topic:"Cibo",w:4,e:"🍷"},
+  {id:50,it:"il conto",es:"la cuenta (del restaurante)",ex:"Cameriere, il conto per favore!",exes:"¡Camarero, la cuenta por favor!",topic:"Ristorante",w:4,e:"🧾"},
+  {id:51,it:"vorrei...",es:"quisiera... / me gustaría...",ex:"Vorrei una pasta al pomodoro.",exes:"Quisiera una pasta con tomate.",topic:"Ristorante",w:4,e:"🙋"},
+  {id:52,it:"ho mangiato",es:"he comido / comí",ex:"Ieri ho mangiato una pizza buonissima.",exes:"Ayer comí una pizza deliciosa.",topic:"Passato",w:4,e:"🍴"},
+  {id:53,it:"sono andato/a",es:"he ido / fui",ex:"Sono andato al mare.",exes:"Fui al mar.",topic:"Passato",w:4,e:"🌊"},
+  {id:54,it:"ho fatto",es:"he hecho / hice",ex:"Ho fatto la spesa stamattina.",exes:"Hice la compra esta mañana.",topic:"Passato",w:4,e:"🛒"},
+  {id:55,it:"sono stato/a",es:"he estado / estuve",ex:"Sono stata a Roma la settimana scorsa.",exes:"Estuve en Roma la semana pasada.",topic:"Passato",w:4,e:"🏛️"},
+  {id:56,it:"ho visto / ho detto",es:"he visto / dije",ex:"Ho visto Marco e gli ho detto ciao.",exes:"Vi a Marco y le dije hola.",topic:"Passato",w:4,e:"🎬"},
+  {id:57,it:"ieri / oggi / domani",es:"ayer / hoy / mañana",ex:"Ieri ho lavorato, oggi riposo.",exes:"Ayer trabajé, hoy descanso.",topic:"Tempo",w:4,e:"📅"},
+  {id:58,it:"la settimana scorsa",es:"la semana pasada",ex:"La settimana scorsa sono andato a Milano.",exes:"La semana pasada fui a Milán.",topic:"Tempo",w:4,e:"⏪"},
+  {id:59,it:"il cameriere",es:"el camarero",ex:"Il cameriere ci ha portato il menù.",exes:"El camarero nos trajo el menú.",topic:"Ristorante",w:4,e:"🤵"},
+  {id:60,it:"l'anno scorso / l'anno prossimo",es:"el año pasado / el año que viene",ex:"L'anno scorso sono stato in Italia.",exes:"El año pasado estuve en Italia.",topic:"Tempo",w:4,e:"🗓️"},
+  // SEMANA 5: Viaggi e città
+  {id:61,it:"l'aeroporto",es:"el aeropuerto",ex:"Il volo parte dall'aeroporto di Roma.",exes:"El vuelo sale del aeropuerto de Roma.",topic:"Viaggi",w:5,e:"✈️"},
+  {id:62,it:"la stazione",es:"la estación",ex:"La stazione è lontana da qui?",exes:"¿Está lejos la estación de aquí?",topic:"Viaggi",w:5,e:"🚉"},
+  {id:63,it:"il treno / l'autobus",es:"el tren / el autobús",ex:"Prendo il treno alle sette.",exes:"Tomo el tren a las siete.",topic:"Viaggi",w:5,e:"🚆"},
+  {id:64,it:"il biglietto",es:"el billete / la entrada",ex:"Dove posso comprare il biglietto?",exes:"¿Dónde puedo comprar el billete?",topic:"Viaggi",w:5,e:"🎫"},
+  {id:65,it:"la partenza / l'arrivo",es:"la salida / la llegada",ex:"L'arrivo è alle quattordici.",exes:"La llegada es a las catorce.",topic:"Viaggi",w:5,e:"🛫"},
+  {id:66,it:"il ritardo",es:"el retraso",ex:"Il treno ha un ritardo di venti minuti.",exes:"El tren tiene un retraso de veinte minutos.",topic:"Viaggi",w:5,e:"⏱️"},
+  {id:67,it:"l'albergo / la camera ⚠️",es:"el hotel / la habitación",ex:"Ho prenotato una camera all'albergo.",exes:"He reservado una habitación en el hotel.",topic:"Viaggi",w:5,e:"🏨"},
+  {id:68,it:"la prenotazione",es:"la reserva",ex:"Ho una prenotazione a nome Rossi.",exes:"Tengo una reserva a nombre de Rossi.",topic:"Viaggi",w:5,e:"📋"},
+  {id:69,it:"a sinistra / a destra",es:"a la izquierda / a la derecha",ex:"Gira a sinistra al semaforo.",exes:"Gira a la izquierda en el semáforo.",topic:"Orientamento",w:5,e:"↔️"},
+  {id:70,it:"sempre dritto",es:"todo recto",ex:"Vada sempre dritto per 200 metri.",exes:"Siga todo recto 200 metros.",topic:"Orientamento",w:5,e:"⬆️"},
+  {id:71,it:"la piazza / la via",es:"la plaza / la calle",ex:"Ci vediamo in piazza Navona.",exes:"Quedamos en la plaza Navona.",topic:"Città",w:5,e:"🏛️"},
+  {id:72,it:"la farmacia / l'ospedale",es:"la farmacia / el hospital",ex:"C'è una farmacia qui vicino?",exes:"¿Hay una farmacia cerca?",topic:"Città",w:5,e:"💊"},
+  {id:73,it:"il supermercato",es:"el supermercado",ex:"Devo andare al supermercato.",exes:"Tengo que ir al supermercado.",topic:"Città",w:5,e:"🛒"},
+  {id:74,it:"vicino / lontano",es:"cerca / lejos",ex:"Il museo è vicino alla stazione.",exes:"El museo está cerca de la estación.",topic:"Orientamento",w:5,e:"📍"},
+  {id:75,it:"il passaporto / il bagaglio",es:"el pasaporte / el equipaje",ex:"Ho perso il mio bagaglio!",exes:"¡He perdido mi equipaje!",topic:"Viaggi",w:5,e:"🧳"},
+  // SEMANA 6: Lavoro e vita quotidiana
+  {id:76,it:"il lavoro",es:"el trabajo",ex:"Come va il lavoro?",exes:"¿Cómo va el trabajo?",topic:"Lavoro",w:6,e:"💼"},
+  {id:77,it:"l'ufficio",es:"la oficina",ex:"Lavoro in ufficio dalle nove.",exes:"Trabajo en la oficina desde las nueve.",topic:"Lavoro",w:6,e:"🏢"},
+  {id:78,it:"la riunione",es:"la reunión",ex:"Ho una riunione importante domani.",exes:"Tengo una reunión importante mañana.",topic:"Lavoro",w:6,e:"👥"},
+  {id:79,it:"il collega / la collega",es:"el/la compañero/a de trabajo",ex:"I miei colleghi sono simpatici.",exes:"Mis compañeros de trabajo son simpáticos.",topic:"Lavoro",w:6,e:"👩‍💼"},
+  {id:80,it:"lo stipendio",es:"el salario / el sueldo",ex:"Il suo stipendio è molto alto.",exes:"Su sueldo es muy alto.",topic:"Lavoro",w:6,e:"💶"},
+  {id:81,it:"il capo",es:"el jefe",ex:"Il mio capo è molto esigente.",exes:"Mi jefe es muy exigente.",topic:"Lavoro",w:6,e:"👔"},
+  {id:82,it:"di mattina / di sera",es:"por la mañana / por la noche",ex:"Di mattina faccio sport.",exes:"Por la mañana hago deporte.",topic:"Routine",w:6,e:"🕐"},
+  {id:83,it:"di solito",es:"normalmente / por lo general",ex:"Di solito mi alzo alle sette.",exes:"Normalmente me levanto a las siete.",topic:"Routine",w:6,e:"🔄"},
+  {id:84,it:"mi alzo / mi sveglio",es:"me levanto / me despierto",ex:"Mi sveglio sempre alle sei.",exes:"Siempre me despierto a las seis.",topic:"Routine",w:6,e:"⏰"},
+  {id:85,it:"la casa / l'appartamento",es:"la casa / el apartamento",ex:"Il mio appartamento è al terzo piano.",exes:"Mi apartamento está en el tercer piso.",topic:"Casa",w:6,e:"🏠"},
+  {id:86,it:"la cucina / il salotto",es:"la cocina / el salón",ex:"La cucina è piccola ma funzionale.",exes:"La cocina es pequeña pero funcional.",topic:"Casa",w:6,e:"🛋️"},
+  {id:87,it:"fare la spesa",es:"hacer la compra",ex:"Ogni sabato faccio la spesa.",exes:"Cada sábado hago la compra.",topic:"Routine",w:6,e:"🛍️"},
+  {id:88,it:"il fine settimana",es:"el fin de semana",ex:"Cosa fai questo fine settimana?",exes:"¿Qué haces este fin de semana?",topic:"Tempo",w:6,e:"🎉"},
+  {id:89,it:"adesso / subito ⚠️",es:"ahora / enseguida",ex:"Vengo subito, aspetta!",exes:"Voy enseguida, ¡espera!",topic:"Tempo",w:6,e:"⚡"},
+  {id:90,it:"spesso / qualche volta / mai",es:"a menudo / a veces / nunca",ex:"Non vado mai al cinema da solo.",exes:"Nunca voy al cine solo.",topic:"Frequenza",w:6,e:"📊"},
+  // SEMANA 7: Opinioni e sentimenti
+  {id:91,it:"penso che... / credo che...",es:"pienso que... / creo que...",ex:"Penso che sia una buona idea.",exes:"Pienso que es una buena idea.",topic:"Opinioni",w:7,e:"💭"},
+  {id:92,it:"secondo me",es:"según yo / en mi opinión",ex:"Secondo me, hai ragione.",exes:"En mi opinión, tienes razón.",topic:"Opinioni",w:7,e:"🤔"},
+  {id:93,it:"sono d'accordo",es:"estoy de acuerdo",ex:"Sì, sono completamente d'accordo.",exes:"Sí, estoy completamente de acuerdo.",topic:"Opinioni",w:7,e:"✅"},
+  {id:94,it:"hai ragione / hai torto",es:"tienes razón / estás equivocado",ex:"Hai ragione, mi dispiace.",exes:"Tienes razón, lo siento.",topic:"Opinioni",w:7,e:"⚖️"},
+  {id:95,it:"mi piace / non mi piace",es:"me gusta / no me gusta",ex:"Mi piace molto la musica italiana.",exes:"Me gusta mucho la música italiana.",topic:"Preferenze",w:7,e:"❤️"},
+  {id:96,it:"preferisco",es:"prefiero",ex:"Preferisco il caffè al tè.",exes:"Prefiero el café al té.",topic:"Preferenze",w:7,e:"☕"},
+  {id:97,it:"sono contento/a",es:"estoy contento/a",ex:"Sono molto contenta di vederti!",exes:"¡Estoy muy contenta de verte!",topic:"Emozioni",w:7,e:"😊"},
+  {id:98,it:"sono stanco/a",es:"estoy cansado/a",ex:"Sono stanchissimo dopo il lavoro.",exes:"Estoy agotado después del trabajo.",topic:"Emozioni",w:7,e:"😴"},
+  {id:99,it:"ho paura",es:"tengo miedo",ex:"Ho paura degli esami.",exes:"Tengo miedo de los exámenes.",topic:"Emozioni",w:7,e:"😨"},
+  {id:100,it:"ho voglia di...",es:"tengo ganas de...",ex:"Ho voglia di una pizza!",exes:"¡Tengo ganas de una pizza!",topic:"Emozioni",w:7,e:"🤤"},
+  {id:101,it:"mi dispiace",es:"lo siento / me sabe mal",ex:"Mi dispiace molto per il ritardo.",exes:"Lo siento mucho por el retraso.",topic:"Emozioni",w:7,e:"😔"},
+  {id:102,it:"per fortuna / purtroppo",es:"por suerte / desgraciadamente",ex:"Purtroppo non posso venire.",exes:"Desgraciadamente no puedo venir.",topic:"Connettori",w:7,e:"🍀"},
+  {id:103,it:"però / ma",es:"pero / sin embargo",ex:"Mi piace, però è troppo caro.",exes:"Me gusta, pero es demasiado caro.",topic:"Connettori",w:7,e:"🔗"},
+  {id:104,it:"quindi / allora",es:"entonces / por lo tanto",ex:"Non c'è posto, quindi andiamo altrove.",exes:"No hay sitio, entonces vamos a otro lugar.",topic:"Connettori",w:7,e:"➡️"},
+  {id:105,it:"anche se",es:"aunque",ex:"Esco anche se piove.",exes:"Salgo aunque llueva.",topic:"Connettori",w:7,e:"🌂"},
+  // SEMANA 8: Congiuntivo e B1 avanzato
+  {id:106,it:"bisogna che...",es:"es necesario que...",ex:"Bisogna che tu studi di più.",exes:"Es necesario que estudies más.",topic:"Congiuntivo",w:8,e:"📚"},
+  {id:107,it:"è importante che...",es:"es importante que...",ex:"È importante che tu sia puntuale.",exes:"Es importante que seas puntual.",topic:"Congiuntivo",w:8,e:"⭐"},
+  {id:108,it:"sebbene / benché",es:"aunque (+ subjuntivo)",ex:"Sebbene sia stanco, continuo a lavorare.",exes:"Aunque esté cansado, sigo trabajando.",topic:"Congiuntivo",w:8,e:"🔄"},
+  {id:109,it:"prima che...",es:"antes de que...",ex:"Chiamami prima che parta.",exes:"Llámame antes de que salgas.",topic:"Congiuntivo",w:8,e:"⏰"},
+  {id:110,it:"nonostante",es:"a pesar de que",ex:"Nonostante la pioggia, siamo usciti.",exes:"A pesar de la lluvia, salimos.",topic:"Congiuntivo",w:8,e:"☔"},
+  {id:111,it:"vorrei (condicional)",es:"quisiera / me gustaría",ex:"Vorrei prenotare un tavolo per due.",exes:"Quisiera reservar una mesa para dos.",topic:"Condizionale",w:8,e:"💫"},
+  {id:112,it:"se potessi...",es:"si pudiera...",ex:"Se potessi, viaggerei ogni giorno.",exes:"Si pudiera, viajaría cada día.",topic:"Condizionale",w:8,e:"✨"},
+  {id:113,it:"da quanto tempo...?",es:"¿desde hace cuánto tiempo...?",ex:"Da quanto tempo studi l'italiano?",exes:"¿Desde hace cuánto tiempo estudias italiano?",topic:"B1",w:8,e:"⏳"},
+  {id:114,it:"in realtà / in effetti",es:"en realidad / de hecho",ex:"In realtà, la situazione è più complessa.",exes:"En realidad, la situación es más compleja.",topic:"B1",w:8,e:"💡"},
+  {id:115,it:"è possibile che...",es:"es posible que...",ex:"È possibile che arrivi tardi.",exes:"Es posible que llegue tarde.",topic:"Congiuntivo",w:8,e:"🎲"},
+  {id:116,it:"mi puoi aiutare?",es:"¿me puedes ayudar?",ex:"Mi puoi aiutare con questo problema?",exes:"¿Me puedes ayudar con este problema?",topic:"B1",w:8,e:"🤝"},
+  {id:117,it:"sto imparando",es:"estoy aprendiendo",ex:"Sto imparando l'italiano da due mesi.",exes:"Llevo dos meses aprendiendo italiano.",topic:"B1",w:8,e:"🎓"},
+];
+
+const FF = [
+  {it:"burro",im:"mantequilla 🧈",es:"burro",em:"asno, jumento 🫏",w:"¡Clásico! «Vorrei del burro» = quiero mantequilla, ¡no un burro!",e:"🧈"},
+  {it:"camera",im:"habitación 🛏️",es:"cámara",em:"cámara de foto/vídeo 📷",w:"«Una camera singola» = una habitación individual en el hotel.",e:"🛏️"},
+  {it:"largo",im:"ancho, amplio ↔️",es:"largo",em:"long, de gran longitud ↕️",w:"En italiano «lungo» = largo. «Largo» = ancho/amplio.",e:"↔️"},
+  {it:"pronto",im:"¡listo! / ¡diga! (al teléfono) 📞",es:"pronto",em:"soon, enseguida ⚡",w:"Al coger el teléfono en Italia se dice «Pronto!» = ¡Diga!",e:"📞"},
+  {it:"guardare",im:"mirar, ver 👁️",es:"guardar",em:"to save, to keep, guardar 💾",w:"«Guarda!» = ¡Mira! No tiene nada que ver con guardar algo.",e:"👁️"},
+  {it:"salire",im:"subir ⬆️",es:"salir",em:"to go out, salir 🚪",w:"¡Confusión total! «Salire» = subir. Para salir: «uscire».",e:"⬆️"},
+  {it:"uscire",im:"salir (de un lugar) 🚪",es:"uscire (no existe)",em:"—",w:"«Esco» = salgo. Recuerda: salire≠salir; uscire=salir. ¡Al revés!",e:"🚪"},
+  {it:"sensibile",im:"sensible, sensitivo 💔",es:"sensible",em:"razonable, sensato 🧠",w:"Misma forma, significado distinto. En español 'sensible' = sensitivo en italiano.",e:"💔"},
+  {it:"attuale",im:"actual, presente, de ahora 📰",es:"actual",em:"real, verdadero, genuino ✔️",w:"«La situazione attuale» = la situación de ahora. En español 'actual' = real.",e:"📰"},
+  {it:"illuso",im:"ingenuo, que se engaña 🙈",es:"ilusionado",em:"excited, con ilusión/esperanza 💫",w:"«Sei un illuso» = eres un ingenuo. ≠ ilusionado (emocionado).",e:"💭"},
+  {it:"deluso",im:"decepcionado 😞",es:"delusional (EN)",em:"(no equivalente directo en español)",w:"«Sono deluso» = estoy decepcionado/desilusionado.",e:"😞"},
+  {it:"morbido",im:"suave, blando, tierno 🧸",es:"mórbido",em:"morbid, malsano, enfermizo ☠️",w:"«Questo pane è morbido» = este pan está tierno/suave. No tiene connotación negativa.",e:"🧸"},
+  {it:"annoiato",im:"aburrido, hastiado 😑",es:"annoyed (EN)",em:"irritado, molesto 😤 (inglés)",w:"¡No viene del inglés 'annoyed'! «Sono annoiato» = estoy aburrido.",e:"😑"},
+  {it:"subito",im:"enseguida, inmediatamente ⚡",es:"subido",em:"past participle of 'subir' 🔼",w:"«Vengo subito!» = ¡Voy enseguida! Nada que ver con 'subido'.",e:"⚡"},
+  {it:"caldo",im:"caliente (adj.) 🌡️ / 'il caldo' = el calor",es:"caldo",em:"broth, sopa/caldo 🍲",w:"En italiano 'caldo' es adjetivo (=caliente). Para sopa: «il brodo».",e:"🌡️"},
+  {it:"casino",im:"lío, caos (coloquial) 🎰",es:"casino",em:"gambling house, casino 🎰",w:"«Che casino!» = ¡Qué lío/caos! (muy coloquial en italiano).",e:"🎰"},
+  {it:"accidente!",im:"¡maldita sea! (exclamación) 😤",es:"accidente",em:"accident 🚗",w:"Para 'accidente' en italiano: «incidente». «Accidente!» = ¡Anda! / ¡Caramba!",e:"💢"},
+  {it:"noioso",im:"aburrido, tedioso, pesado 💤",es:"(no equivalente directo)",em:"—",w:"«Che film noioso!» = ¡Qué película más aburrida! Recuerda este falso amigo.",e:"💤"},
+  {it:"parente",im:"familiar, pariente 👨‍👩‍👧 ✅ VERDADERO",es:"pariente",em:"relative, familiar ✅",w:"¡Buenas noticias! Este es un VERDADERO amigo. Parente = pariente.",e:"✅"},
+  {it:"stazione",im:"estación (tren/metro) 🚉 ✅ VERDADERO",es:"estación",em:"station, estación ✅",w:"¡Verdadero amigo! Stazione = estación. Lo mismo que en español.",e:"✅"},
+  {it:"libreria",im:"librería (tienda de libros) 📚 ✅ VERDADERO",es:"librería",em:"bookstore ✅",w:"¡Coincide! Libreria = librería. (Atención: en inglés 'library' = biblioteca).",e:"✅"},
+  {it:"fabbrica",im:"fábrica 🏭 ✅ VERDADERO",es:"fábrica",em:"factory ✅",w:"¡Perfecto! Fabbrica = fábrica. Idéntico.",e:"✅"},
+  {it:"perdere",im:"perder 🔑 ✅ VERDADERO",es:"perder",em:"to lose ✅",w:"¡Igual que en español! 'Ho perso le chiavi' = Perdí las llaves.",e:"✅"},
+  {it:"educato",im:"educado, cortés 🎓 ✅ VERDADERO",es:"educado",em:"polite, educated ✅",w:"¡Verdadero amigo! Educato = educado/cortés.",e:"✅"},
+  {it:"firma",im:"firma/empresa (también: firma = firma)",es:"firma",em:"signature, firma",w:"Curioso: 'firma' en italiano puede ser 'empresa'. La firma (signature) = firma (igual).",e:"✍️"},
+];
+
+const COG = [
+  {it:"la musica",es:"la música",e:"🎵",n:"Idéntico"},
+  {it:"l'arte",es:"el arte",e:"🎨",n:"Casi idéntico"},
+  {it:"la cultura",es:"la cultura",e:"🏛️",n:"Idéntico"},
+  {it:"la natura",es:"la naturaleza",e:"🌿",n:"Reconocible"},
+  {it:"la temperatura",es:"la temperatura",e:"🌡️",n:"Idéntico"},
+  {it:"la medicina",es:"la medicina",e:"💊",n:"Idéntico"},
+  {it:"l'economia",es:"la economía",e:"📈",n:"Casi idéntico"},
+  {it:"la politica",es:"la política",e:"🏛️",n:"Casi idéntico"},
+  {it:"la storia",es:"la historia",e:"📜",n:"Fácil de recordar"},
+  {it:"la tecnologia",es:"la tecnología",e:"💻",n:"Casi idéntico"},
+  {it:"l'informazione",es:"la información",e:"ℹ️",n:"-ción → -zione"},
+  {it:"la comunicazione",es:"la comunicación",e:"📡",n:"-ción → -zione"},
+  {it:"la televisione",es:"la televisión",e:"📺",n:"-ión → -ione"},
+  {it:"il telefono",es:"el teléfono",e:"📱",n:"Idéntico"},
+  {it:"la fotografia",es:"la fotografía",e:"📸",n:"Idéntico"},
+  {it:"il problema",es:"el problema",e:"❓",n:"Idéntico (masc. en ambos)"},
+  {it:"il sistema",es:"el sistema",e:"⚙️",n:"Idéntico (masc. en ambos)"},
+  {it:"il programma",es:"el programa",e:"📋",n:"Casi idéntico"},
+  {it:"il documento",es:"el documento",e:"📄",n:"Idéntico"},
+  {it:"il teatro",es:"el teatro",e:"🎭",n:"Idéntico"},
+  {it:"il festival",es:"el festival",e:"🎪",n:"Idéntico"},
+  {it:"il calcio",es:"el fútbol (en Italia) ⚽",e:"⚽",n:"Calcio = fútbol en Italia"},
+  {it:"l'università",es:"la universidad",e:"🎓",n:"Casi idéntico"},
+  {it:"l'appartamento",es:"el apartamento",e:"🏠",n:"Casi idéntico"},
+  {it:"il momento",es:"el momento",e:"⏱️",n:"Idéntico"},
+  {it:"il silenzio",es:"el silencio",e:"🤫",n:"Casi idéntico"},
+  {it:"la famiglia",es:"la familia",e:"👨‍👩‍👧‍👦",n:"Casi idéntico"},
+  {it:"la piazza",es:"la plaza",e:"🏛️",n:"Reconocible"},
+  {it:"il viaggio",es:"el viaje",e:"✈️",n:"Diferente pero reconocible"},
+  {it:"il palazzo",es:"el palacio / edificio",e:"🏰",n:"Palazzo = también edificio normal"},
+];
+
+const PLAN = [
+  {w:1,e:"👋",title:"¡Primeros pasos!",sub:"Saluti · Basi · Supervivencia",color:"#D4714A",bg:"rgba(212,113,74,.1)",
+   days:[
+    {d:"Días 1-2",t:"Saluti",c:"Ciao, grazie, prego, scusa, per favore. Las 6 palabras que necesitas desde el día uno."},
+    {d:"Días 3-4",t:"Basi",c:"Sì, no, come stai, bene/male, non capisco, quanto costa. Supervivencia pura."},
+    {d:"Días 5-6",t:"Preguntas",c:"Dov'è, quando, chi, cosa. Las 4 preguntas de oro para orientarte."},
+    {d:"Día 7",t:"🔄 Repaso SRS",c:"La app te mostrará automáticamente las tarjetas que toca repasar. ¡15 minutos!"},
+   ]},
+  {w:2,e:"🔢",title:"Números y familia",sub:"Numeri · Colori · Famiglia",color:"#4A7FB5",bg:"rgba(74,127,181,.1)",
+   days:[
+    {d:"Días 8-9",t:"Numeri",c:"Del 1 al 10. Básico para precios, horarios, pisos, teléfonos."},
+    {d:"Días 10-11",t:"Colori",c:"Rojo, azul, verde, amarillo, blanco, negro. 6 colores esenciales."},
+    {d:"Días 12-13",t:"Famiglia",c:"Madre, padre, fratello, sorella, figlio, marito, moglie. Tu árbol familiar en italiano."},
+    {d:"Día 14",t:"🔄 Repaso SRS",c:"Todas las tarjetas de semanas 1-2 pendientes. El algoritmo decide qué repasar."},
+   ]},
+  {w:3,e:"⚡",title:"Los verbos que lo son todo",sub:"15 verbos esenciales en presente",color:"#2E8B57",bg:"rgba(46,139,87,.1)",
+   days:[
+    {d:"Días 15-16",t:"Essere + Avere",c:"'Ser/estar' y 'tener'. Son los pilares de todo. Memoriza sus conjugaciones de cor."},
+    {d:"Días 17-18",t:"Andare · Venire · Fare",c:"Ir, venir, hacer. Con estos tres resuelves el 40% de las situaciones cotidianas."},
+    {d:"Días 19-20",t:"Potere · Volere · Dovere",c:"Poder, querer, deber. Los modales. 'Posso...', 'Voglio...', 'Devo...'."},
+    {d:"Día 21",t:"🔄 Repaso SRS intensivo",c:"Punto clave: los verbos necesitan más repetición. El SRS los dará más seguido."},
+   ]},
+  {w:4,e:"🍕",title:"Mesa y pasado",sub:"Cibo · Ristorante · Passato prossimo",color:"#CE2B37",bg:"rgba(206,43,55,.1)",
+   days:[
+    {d:"Días 22-23",t:"Cibo",c:"Pan, pasta, pizza, carne, pesce, vino, acqua. Italia y la comida son inseparables."},
+    {d:"Días 24-25",t:"Ristorante",c:"Vorrei, il conto, il cameriere. Comer fuera en Italia sin sudar."},
+    {d:"Días 26-27",t:"Passato prossimo",c:"Ho mangiato, sono andato, ho fatto, sono stato. El pasado compuesto italiano."},
+    {d:"Día 28",t:"🔄 Repaso SRS",c:"Media sesión extra de verbos en pasado. Repite los que fallaste esta semana."},
+   ]},
+  {w:5,e:"✈️",title:"Viajes y ciudad",sub:"Viaggi · Orientamento · Città",color:"#C99A2E",bg:"rgba(201,154,46,.1)",
+   days:[
+    {d:"Días 29-30",t:"Viaggi",c:"Aeropuerto, estación, tren, billete, hotel, habitación. ¡OJO: camera ≠ cámara!"},
+    {d:"Días 31-32",t:"Orientamento",c:"Sinistra, destra, dritto, vicino, lontano. Para no perderte en Roma."},
+    {d:"Días 33-34",t:"Città",c:"Piazza, via, farmacia, supermercato, uscita. La ciudad italiana en palabras."},
+    {d:"Día 35",t:"🔄 Repaso SRS",c:"Revisión acumulada semanas 1-5. El algoritmo optimiza qué repasar."},
+   ]},
+  {w:6,e:"💼",title:"Vida cotidiana",sub:"Lavoro · Casa · Routine",color:"#7A5F9E",bg:"rgba(122,95,158,.1)",
+   days:[
+    {d:"Días 36-37",t:"Lavoro",c:"Trabajo, oficina, reunión, colega, jefe, sueldo. Para el contexto laboral."},
+    {d:"Días 38-39",t:"Casa + Routine",c:"Apartamento, cocina, salón, levantarse, di solito, spesso, mai."},
+    {d:"Días 40-41",t:"Tiempo",c:"Fine settimana, adesso, subito ⚠️ (falso amigo), spesso, qualche volta."},
+    {d:"Día 42",t:"🔄 Repaso SRS acumulado",c:"Punto crítico: muchas tarjetas maduras. Sesión de 20 min para reforzar."},
+   ]},
+  {w:7,e:"💬",title:"Opiniones y emociones",sub:"Connettori · Emozioni · Opinioni",color:"#D4714A",bg:"rgba(212,113,74,.1)",
+   days:[
+    {d:"Días 43-44",t:"Opinioni",c:"Penso che, secondo me, sono d'accordo, hai ragione. Debate básico."},
+    {d:"Días 45-46",t:"Emozioni",c:"Contento, stanco, ho paura, mi piace, preferisco, ho voglia di."},
+    {d:"Días 47-48",t:"Connettori",c:"Però, quindi, allora, anche se, per fortuna, purtroppo. Frases más complejas."},
+    {d:"Día 49",t:"🔄 Test de nivel informal",c:"Quiz rápido de todas las semanas. ¿Cuánto recuerdas?"},
+   ]},
+  {w:8,e:"🎓",title:"Nivel B1 — Llegada",sub:"Congiuntivo · Condizionale · B1 real",color:"#2E8B57",bg:"rgba(46,139,87,.1)",
+   days:[
+    {d:"Días 50-51",t:"Congiuntivo",c:"Bisogna che, è importante che, sebbene, prima che. El subjuntivo italiano."},
+    {d:"Días 52-53",t:"Condizionale",c:"Vorrei, se potessi... El condicional para hablar con cortesía y de deseos."},
+    {d:"Días 54-55",t:"B1 real",c:"Da quanto tempo, in realtà, sto imparando. Expresiones de nivel intermedio."},
+    {d:"Días 56-60",t:"🔄🎓 Repaso final libre",c:"Usa el SRS cada día. En estos últimos 5 días consolidas todo lo aprendido."},
+   ]},
+];
+
+// ═══════════════════════════════════════════════════
+// SRS ENGINE
+// ═══════════════════════════════════════════════════
+const BOX_INTERVALS = [0, 1, 3, 7, 14, 30]; // días por caja 1-5
+
+function todayStr() {
+  return new Date().toISOString().split('T')[0];
+}
+
+function addDays(dateStr, n) {
+  const d = new Date(dateStr);
+  d.setDate(d.getDate() + n);
+  return d.toISOString().split('T')[0];
+}
+
+function daysSince(dateStr) {
+  if (!dateStr) return 0;
+  const d = new Date(dateStr);
+  const t = new Date();
+  d.setHours(0,0,0,0); t.setHours(0,0,0,0);
+  return Math.floor((t - d) / 86400000);
+}
+
+function initCardState(id) {
+  return { box: 0, nextReview: todayStr(), reviews: 0 };
+}
+
+function answerCard(id, correct) {
+  const st = S.cardStates[id] || initCardState(id);
+  if (correct) {
+    st.box = Math.min(5, st.box + 1);
+    st.reviews++;
+  } else {
+    st.box = 1;
+    st.reviews++;
+  }
+  const interval = BOX_INTERVALS[st.box] || 1;
+  st.nextReview = addDays(todayStr(), interval);
+  S.cardStates[id] = st;
+  if (correct) S.totalCorrect = (S.totalCorrect||0) + 1;
+  else S.totalWrong = (S.totalWrong||0) + 1;
+  saveState();
+}
+
+function getDueCards() {
+  const today = todayStr();
+  const currentWeek = getCurrentWeek();
+  const available = VOCAB.filter(c => c.w <= currentWeek);
+  return available.filter(c => {
+    const st = S.cardStates[c.id];
+    if (!st) return true; // nunca vista
+    return st.nextReview <= today;
+  });
+}
+
+function getCurrentWeek() {
+  if (!S.startDate) return 1;
+  const days = daysSince(S.startDate);
+  return Math.min(8, Math.ceil((days + 1) / 7));
+}
+
+// ═══════════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════════
+let S = {
+  startDate: null,
+  streak: 0,
+  lastStudied: null,
+  cardStates: {},
+  totalCorrect: 0,
+  totalWrong: 0,
+};
+
+function loadState() {
+  try {
+    const saved = localStorage.getItem('italiano_v2');
+    if (saved) S = JSON.parse(saved);
+  } catch(e) {}
+}
+
+function saveState() {
+  try { localStorage.setItem('italiano_v2', JSON.stringify(S)); } catch(e) {}
+}
+
+function updateStreak() {
+  const today = todayStr();
+  if (S.lastStudied === today) return;
+  const yesterday = addDays(today, -1);
+  if (S.lastStudied === yesterday) {
+    S.streak = (S.streak || 0) + 1;
+  } else if (S.lastStudied !== today) {
+    S.streak = 1;
+  }
+  S.lastStudied = today;
+  saveState();
+}
+
+// ═══════════════════════════════════════════════════
+// APP STATE
+// ═══════════════════════════════════════════════════
+let screen = 'home';
+let session = { cards: [], idx: 0, flipped: false, correct: 0, wrong: 0, done: false };
+let vocabTab = 'ff';
+let openWeek = null;
+
+function goTo(s) {
+  screen = s;
+  if (s === 'session') startSession();
+  render();
+}
+
+function startSession() {
+  const due = getDueCards();
+  if (due.length === 0) {
+    session = { cards: [], idx: 0, flipped: false, correct: 0, wrong: 0, done: true };
+    return;
+  }
+  // shuffle
+  const shuffled = [...due].sort(() => Math.random() - .5);
+  session = { cards: shuffled, idx: 0, flipped: false, correct: 0, wrong: 0, done: false };
+}
+
+// ═══════════════════════════════════════════════════
+// RENDER
+// ═══════════════════════════════════════════════════
+function render() {
+  if (!S.startDate) { renderSetup(); return; }
+  document.getElementById('app').innerHTML = `
+    ${renderScreen()}
+    <nav>
+      ${['home','plan','session','vocab','stats'].map((s,i) => {
+        const icons = ['🏠','📅','🃏','📚','📊'];
+        const labels = ['Hoy','Plan','Sesión','Vocab','Stats'];
+        return `<button class="nt ${screen===s?'act':''}" onclick="goTo('${s}')">
+          <span class="ni">${icons[i]}</span>${labels[i]}
+        </button>`;
+      }).join('')}
+    </nav>`;
+}
+
+function renderScreen() {
+  const screens = { home: rHome, plan: rPlan, session: rSession, vocab: rVocab, stats: rStats };
+  return `<div class="scr act">${(screens[screen]||rHome)()}</div>`;
+}
+
+// ─── HOME ───
+function rHome() {
+  const due = getDueCards();
+  const currentWeek = getCurrentWeek();
+  const total = VOCAB.filter(c => c.w <= currentWeek).length;
+  const seen = Object.keys(S.cardStates).length;
+  const pct = total ? Math.round(seen/total*100) : 0;
+
+  const weekDots = Array.from({length:8},(_,i)=>{
+    const w = i+1;
+    let cls = w < currentWeek ? 'done' : w === currentWeek ? 'current' : 'future';
+    return `<div class="wd ${cls}">${w < currentWeek ? '✓' : w === currentWeek ? '▶' : w}</div>`;
+  }).join('');
+
+  return `
+  <div class="flag"><div class="fb g"></div><div class="fe">🇮🇹</div><div class="fb r"></div></div>
+  <div class="ht">Italiano per Spagnoli</div>
+  <div class="hs">📖 Tu academia de bolsillo · Nivel B1</div>
+  <div style="padding:0 16px">
+    <div class="streak-c">
+      <div class="sf">🔥</div>
+      <div class="si">
+        <h2>${S.streak || 0} días</h2>
+        <p>racha de estudio activa</p>
+        <p style="margin-top:4px">⏰ ~15-20 min al día</p>
+      </div>
+    </div>
+    <div class="stats-r">
+      <div class="sm"><span class="v" style="color:var(--terra)">${seen}</span><span class="l">📦 Vistas</span></div>
+      <div class="sm"><span class="v" style="color:var(--blue)">${pct}%</span><span class="l">📈 Progreso</span></div>
+      <div class="sm"><span class="v" style="color:var(--ok)">${S.totalCorrect||0}</span><span class="l">✅ Aciertos</span></div>
+    </div>
+    <div class="due-c">
+      <h3>📬 Tarjetas para HOY</h3>
+      <div class="due-n">${due.length}</div>
+      <p>${due.length === 0 ? '🎉 ¡Todo al día! Vuelve mañana.' : due.length < 10 ? '✅ Sesión corta — ¡perfecta!' : '💪 Sesión completa — ¡tú puedes!'}</p>
+    </div>
+    <button class="btn btn-p" onclick="goTo('session')">▶ Empezar sesión de hoy 🃏</button>
+    <div class="week-progress">
+      <h3>📅 Semana ${currentWeek} de 8 — ${PLAN[currentWeek-1].title}</h3>
+      <div class="weeks-dots">${weekDots}</div>
+    </div>
+    <div style="background:rgba(201,154,46,.09);border-radius:14px;padding:14px 16px;box-shadow:var(--sh);margin-bottom:12px">
+      <div style="font-size:13px;font-weight:800;margin-bottom:6px">💡 Tip científico del día</div>
+      <div style="font-size:12.5px;color:var(--ink2);font-weight:600;line-height:1.5">${getTip()}</div>
+    </div>
+  </div>`;
+}
+
+function getTip() {
+  const tips = [
+    "🧠 El SRS muestra cada tarjeta justo antes de que la olvides. ¡Confía en el algoritmo!",
+    "⏰ 15 minutos diarios son más eficaces que 2 horas los fines de semana. La constancia gana.",
+    "🇮🇹 El italiano y el español comparten un 80% de vocabulario. ¡Ya sabes mucho más de lo que crees!",
+    "🔄 Cuando fallas una tarjeta, vuelve a la caja 1. Eso es normal y necesario para la memoria.",
+    "📅 Las tarjetas en caja 5 se repasan cada 30 días. ¡Ya están en tu memoria a largo plazo!",
+    "⚡ Estudia con la app cerrada un momento antes de abrir la sesión. El esfuerzo de recordar refuerza la memoria.",
+    "🎯 Objetivo de 8 semanas: 117 palabras + expresiones = base sólida de nivel B1.",
+    "🍕 El italiano para hispanohablantes es 30-50% más fácil gracias a la proximidad lingüística.",
+  ];
+  return tips[new Date().getDay() % tips.length];
+}
+
+// ─── SESSION ───
+function rSession() {
+  if (session.done || session.cards.length === 0) {
+    if (session.correct === 0 && session.wrong === 0) {
+      return `<div class="sess-empty">
+        <div class="be">🎉</div>
+        <h2 style="font-family:'Playfair Display',serif">¡Todo al día!</h2>
+        <p>No hay tarjetas pendientes para hoy.<br>Vuelve mañana — el algoritmo ya tiene tu plan.</p>
+        <br>
+        <div style="background:rgba(201,154,46,.1);border-radius:12px;padding:12px 14px;font-size:12.5px;font-weight:700;color:#7A5E0A">
+          ⏰ Próxima sesión mañana · ¡Sigue así!
+        </div>
+      </div>`;
+    }
+    return rSessionDone();
+  }
+
+  const card = session.cards[session.idx];
+  const total = session.cards.length;
+  const pct = (session.idx / total * 100).toFixed(0);
+  const st = S.cardStates[card.id];
+  const box = st ? st.box : 0;
+
+  return `
+  <div class="sess-top">
+    <div class="pb-wrap"><div class="pb-fill" style="width:${pct}%"></div></div>
+    <div class="pb-txt">${session.idx}/${total} 🃏</div>
+  </div>
+  <div class="fc-wrap">
+    <div class="fc ${session.flipped?'flipped':''}" id="fc" onclick="flipCard()">
+      <div class="fc-face fc-front">
+        <div class="fc-topic">${card.topic} · S${card.w}</div>
+        <div class="fc-emoji">${card.e}</div>
+        <div class="fc-word">${card.it}</div>
+        <div class="fc-hint">🇮🇹 italiano → 🇪🇸 español</div>
+        <div class="fc-tap">👆 Toca para ver la traducción</div>
+      </div>
+      <div class="fc-face fc-back">
+        <div class="fc-topic">${card.topic} · Caja ${box+1}/5</div>
+        <div class="fc-trans">🇪🇸 ${card.es}</div>
+        <div class="divider" style="width:100%"></div>
+        <div class="fc-ex">🇮🇹 «${card.ex}»</div>
+        <div class="fc-exes">🇪🇸 ${card.exes}</div>
+      </div>
+    </div>
+  </div>
+  ${session.flipped ? `
+  <div class="ans-btns">
+    <button class="btn-wrong" onclick="answer(false)">❌ No lo sabía</button>
+    <button class="btn-right" onclick="answer(true)">✅ ¡Lo sabía!</button>
+  </div>` : `
+  <div style="padding:0 16px">
+    <div style="background:rgba(74,127,181,.08);border-radius:12px;padding:10px 14px;font-size:12.5px;font-weight:700;color:var(--blue);text-align:center">
+      💭 Intenta recordar la traducción antes de girar la tarjeta
+    </div>
+  </div>`}`;
+}
+
+function rSessionDone() {
+  const acc = session.correct + session.wrong > 0 
+    ? Math.round(session.correct / (session.correct + session.wrong) * 100) : 0;
+  return `<div class="sess-done" style="padding:16px">
+    <div class="done-c">
+      <div class="done-e">${acc >= 70 ? '🏆' : acc >= 50 ? '💪' : '📚'}</div>
+      <h2>${acc >= 70 ? '¡Sesión brillante!' : acc >= 50 ? '¡Buen trabajo!' : '¡Sigue practicando!'}</h2>
+      <p>${acc}% de aciertos hoy</p>
+      <div class="res-row">
+        <div class="res-b ok"><div class="rn">${session.correct}</div><div class="rl">✅ Aciertos</div></div>
+        <div class="res-b err"><div class="rn">${session.wrong}</div><div class="rl">❌ Fallos</div></div>
+      </div>
+      <div class="box-inf">📦 Las tarjetas falladas han vuelto a la Caja 1 — ¡así funciona el SRS!</div>
+    </div>
+    <button class="btn btn-p" onclick="goTo('home')">🏠 Volver al inicio</button>
+    <button class="btn btn-gh" onclick="goTo('vocab')">📚 Repasar vocabulario libre</button>
+  </div>`;
+}
+
+function flipCard() {
+  session.flipped = !session.flipped;
+  const fc = document.getElementById('fc');
+  if (fc) fc.classList.toggle('flipped', session.flipped);
+  // Re-render answer buttons
+  render();
+  // Don't re-render, just update flip manually to avoid losing flip state
+}
+
+function answer(correct) {
+  const card = session.cards[session.idx];
+  answerCard(card.id, correct);
+  if (correct) session.correct++; else session.wrong++;
+  session.idx++;
+  session.flipped = false;
+  if (session.idx >= session.cards.length) {
+    session.done = true;
+    updateStreak();
+  }
+  render();
+}
+
+// ─── PLAN ───
+function rPlan() {
+  const currentWeek = getCurrentWeek();
+  const wCards = PLAN.map((p,i) => {
+    const w = i+1;
+    const isOpen = openWeek === w;
+    const isDone = w < currentWeek;
+    const isCurrent = w === currentWeek;
+    const status = isDone ? '✅' : isCurrent ? '▶️' : '🔒';
+    const days = p.days.map(d => `
+      <div class="dy-item">
+        <div class="dy-dot" style="background:${p.color}"></div>
+        <div class="dy-txt"><strong>${d.d} · ${d.t}</strong>${d.c}</div>
+      </div>`).join('');
+    return `
+    <div class="wk-card">
+      <div class="wk-hdr" onclick="toggleWeek(${w})">
+        <div class="wk-badge" style="background:${p.bg}">${p.e}</div>
+        <div class="wk-i">
+          <h3>Semana ${w}: ${p.title}</h3>
+          <p>${p.sub}</p>
+        </div>
+        <span class="wk-arr ${isOpen?'open':''}">${status} ${isOpen?'▾':'▸'}</span>
+      </div>
+      <div class="wk-body ${isOpen?'open':''}">${days}</div>
+    </div>`;
+  }).join('');
+
+  return `
+  <div class="hd"><h1>📅 Plan de 8 semanas</h1><p>Tu hoja de ruta hacia el nivel B1 🇮🇹</p></div>
+  <div class="plan-legend">
+    <h3>🧭 Cómo funciona</h3>
+    <div class="leg-r">✅ <span>Semana completada</span></div>
+    <div class="leg-r">▶️ <span>Semana actual — ¡aquí estás!</span></div>
+    <div class="leg-r">🔒 <span>Semana pendiente — se desbloquea sola</span></div>
+    <div class="leg-r">🔄 <span>El SRS te avisa qué repasar — no tienes que decidir</span></div>
+  </div>
+  ${wCards}`;
+}
+
+function toggleWeek(w) {
+  openWeek = openWeek === w ? null : w;
+  render();
+}
+
+// ─── VOCAB ───
+function rVocab() {
+  const ffHtml = FF.map(f => `
+    <div class="ff-c">
+      <div class="ff-row">
+        <div>
+          <div class="ff-lang" style="color:var(--green)">🇮🇹 Italiano</div>
+          <div class="ff-word">${f.it}</div>
+          <div class="ff-mean">= ${f.im}</div>
+        </div>
+        <div class="ff-arr">≠</div>
+        <div>
+          <div class="ff-lang" style="color:var(--red)">🇪🇸 Español</div>
+          <div class="ff-word">${f.es}</div>
+          <div class="ff-mean">= ${f.em}</div>
+        </div>
+      </div>
+      <div class="ff-warn">⚠️ ${f.w}</div>
+    </div>`).join('');
+
+  const cogHtml = COG.map(c => `
+    <div class="cog-c">
+      <div class="cog-e">${c.e}</div>
+      <div class="cog-w">
+        <div class="cog-it">🇮🇹 ${c.it}</div>
+        <div class="cog-es">🇪🇸 ${c.es}</div>
+      </div>
+      <div class="cog-n">${c.n}</div>
+    </div>`).join('');
+
+  const vocabBrowse = VOCAB.map(v => `
+    <div class="cog-c">
+      <div class="cog-e">${v.e}</div>
+      <div class="cog-w">
+        <div class="cog-it">🇮🇹 ${v.it}</div>
+        <div class="cog-es">🇪🇸 ${v.es}</div>
+      </div>
+      <div style="font-size:10px;font-weight:800;padding:3px 7px;border-radius:20px;background:rgba(212,113,74,.12);color:var(--terra);flex-shrink:0">S${v.w}</div>
+    </div>`).join('');
+
+  return `
+  <div class="hd"><h1>📚 Vocabulario libre</h1><p>Consulta cuando quieras · Sin presión</p></div>
+  <div class="vtabs">
+    <button class="vt ${vocabTab==='ff'?'act terra':''}" onclick="setVTab('ff')">⚠️ Falsos amigos<br>(${FF.length})</button>
+    <button class="vt ${vocabTab==='cog'?'act blue':''}" onclick="setVTab('cog')">✨ Ya lo sabes<br>(${COG.length})</button>
+    <button class="vt ${vocabTab==='all'?'act ok':''}" onclick="setVTab('all')">🗂️ Todo el vocab<br>(${VOCAB.length})</button>
+  </div>
+  ${vocabTab === 'ff' ? `
+    <div style="background:rgba(206,43,55,.08);border-radius:12px;padding:10px 14px;margin-bottom:14px;font-size:12.5px;font-weight:700;color:var(--red)">
+      ⚠️ Estos son los falsos amigos más peligrosos para un hispanohablante aprendiendo italiano. ¡Estúdialos bien! Los ✅ son verdaderos amigos.
+    </div>
+    ${ffHtml}` : ''}
+  ${vocabTab === 'cog' ? `
+    <div style="background:rgba(46,139,87,.08);border-radius:12px;padding:10px 14px;margin-bottom:14px;font-size:12.5px;font-weight:700;color:var(--green)">
+      ✨ Estas palabras italianas son muy similares al español. ¡Ya las conoces casi todas sin haberlas estudiado!
+    </div>
+    ${cogHtml}` : ''}
+  ${vocabTab === 'all' ? `
+    <div style="background:rgba(74,127,181,.08);border-radius:12px;padding:10px 14px;margin-bottom:14px;font-size:12.5px;font-weight:700;color:var(--blue)">
+      🗂️ Todo el vocabulario del programa. Semana indicada en naranja. Úsalo como referencia.
+    </div>
+    ${vocabBrowse}` : ''}`;
+}
+
+function setVTab(t) { vocabTab = t; render(); }
+
+// ─── STATS ───
+function rStats() {
+  const currentWeek = getCurrentWeek();
+  const totalAvailable = VOCAB.filter(c => c.w <= currentWeek).length;
+  const seen = Object.keys(S.cardStates).length;
+  const total = VOCAB.length;
+  const correct = S.totalCorrect || 0;
+  const wrong = S.totalWrong || 0;
+  const acc = correct + wrong > 0 ? Math.round(correct/(correct+wrong)*100) : 0;
+
+  // Box distribution
+  const boxes = [0,0,0,0,0,0]; // box 0-5
+  VOCAB.forEach(c => {
+    const st = S.cardStates[c.id];
+    if (st) boxes[st.box]++;
+    else boxes[0]++;
+  });
+
+  const boxColors = ['#999','#D4714A','#C99A2E','#4A7FB5','#2E8B57','#CE2B37'];
+  const boxLabels = ['🆕 Nueva','Caja 1\n1 día','Caja 2\n3 días','Caja 3\n7 días','Caja 4\n14 días','Caja 5\n30 días'];
+  const boxHtml = boxes.map((n,i) => `
+    <div class="bx">
+      <span class="bn" style="color:${boxColors[i]}">${n}</span>
+      <span class="bl">${boxLabels[i]}</span>
+    </div>`).join('');
+
+  const pct = total ? Math.round(seen/total*100) : 0;
+  const circumference = 2 * Math.PI * 54;
+  const offset = circumference - (pct/100 * circumference);
+
+  return `
+  <div class="hd"><h1>📊 Tu progreso</h1><p>Estadísticas de aprendizaje</p></div>
+  <div class="ring-w">
+    <svg width="140" height="140" class="ring">
+      <circle cx="70" cy="70" r="54" fill="none" stroke="rgba(42,33,24,.08)" stroke-width="12"/>
+      <circle cx="70" cy="70" r="54" fill="none" stroke="var(--terra)" stroke-width="12"
+        stroke-dasharray="${circumference}" stroke-dashoffset="${offset}"
+        stroke-linecap="round" transform="rotate(-90 70 70)"
+        style="transition:stroke-dashoffset .8s ease"/>
+      <text x="70" y="65" text-anchor="middle" font-size="22" font-weight="900" fill="var(--terra)">${pct}%</text>
+      <text x="70" y="84" text-anchor="middle" font-size="11" font-weight="700" fill="var(--ink2)">completado</text>
+    </svg>
+  </div>
+  <div class="card">
+    <div class="sec">📦 Distribución por cajas SRS</div>
+    <div class="boxes-g">${boxHtml}</div>
+    <div style="font-size:12px;color:var(--ink2);font-weight:600;text-align:center">
+      Las cajas más altas = memoria más consolidada 🧠
+    </div>
+  </div>
+  <div class="acc-c">
+    <div class="sec">📈 Resumen general</div>
+    <div class="acc-row"><span>📅 Semana actual</span><span class="acc-val" style="color:var(--terra)">S${currentWeek}/8</span></div>
+    <div class="acc-row"><span>🔥 Racha</span><span class="acc-val" style="color:var(--terra)">${S.streak||0} días</span></div>
+    <div class="acc-row"><span>👁️ Tarjetas vistas</span><span class="acc-val" style="color:var(--blue)">${seen} / ${total}</span></div>
+    <div class="acc-row"><span>✅ Aciertos totales</span><span class="acc-val" style="color:var(--ok)">${correct}</span></div>
+    <div class="acc-row"><span>❌ Fallos totales</span><span class="acc-val" style="color:var(--err)">${wrong}</span></div>
+    <div class="acc-row"><span>🎯 Precisión global</span><span class="acc-val" style="color:${acc>=70?'var(--ok)':acc>=50?'var(--gold)':'var(--err)'}">${acc}%</span></div>
+  </div>
+  <div class="card">
+    <div class="sec">🗓️ Hoja de ruta</div>
+    <div style="font-size:13px;font-weight:600;color:var(--ink2);line-height:1.6">
+      📅 Inicio: <strong>${S.startDate || '—'}</strong><br>
+      🎯 Meta B1: 8 semanas · ~15-20 min/día<br>
+      📦 Total vocab del programa: ${total} tarjetas<br>
+      🔓 Desbloqueadas ahora: ${totalAvailable} tarjetas<br>
+      📊 Ciencia: Sesiones cortas diarias > sesiones largas esporádicas
+    </div>
+  </div>
+  <div style="margin-top:8px">
+    <button class="btn btn-gh" onclick="if(confirm('¿Resetear TODO el progreso?'))resetAll()">🗑️ Resetear progreso (¡cuidado!)</button>
+  </div>`;
+}
+
+function resetAll() {
+  S = { startDate: null, streak: 0, lastStudied: null, cardStates: {}, totalCorrect: 0, totalWrong: 0 };
+  saveState();
+  screen = 'home';
+  render();
+}
+
+// ─── SETUP ───
+function renderSetup() {
+  document.getElementById('app').innerHTML = `
+  <div class="setup">
+    <div class="setup-flag">🇮🇹</div>
+    <h1>Italiano per Spagnoli</h1>
+    <p>Tu academia de bolsillo para alcanzar el nivel B1 en italiano.</p>
+    <div style="text-align:left;margin:14px 0;background:var(--paper);border-radius:14px;padding:16px;box-shadow:var(--sh);width:100%">
+      <ul style="list-style:none">
+        <li>🃏 <strong>117 tarjetas</strong> con vocabulario esencial</li>
+        <li style="margin-top:8px">🧠 <strong>SRS científico</strong> — repite justo antes de olvidar</li>
+        <li style="margin-top:8px">📅 <strong>Plan de 8 semanas</strong> — día a día</li>
+        <li style="margin-top:8px">⚠️ <strong>Falsos amigos</strong> — las trampas del italiano para hispanohablante</li>
+        <li style="margin-top:8px">✨ <strong>Cognados</strong> — las palabras que ya conoces</li>
+        <li style="margin-top:8px">💾 <strong>100% offline</strong> — guardado en tu dispositivo</li>
+      </ul>
+    </div>
+    <div class="setup-note">
+      ⏰ Solo 15-20 minutos al día bastan.<br>
+      La constancia es más importante que la duración.
+    </div>
+    <button class="btn btn-p" onclick="startApp()" style="width:100%;font-size:17px;padding:18px">
+      🚀 ¡Empezar hoy!
+    </button>
+    <p style="font-size:12px;color:var(--ink2);margin-top:12px">Tu progreso se guarda en este dispositivo 📱</p>
+  </div>`;
+}
+
+function startApp() {
+  S.startDate = todayStr();
+  S.streak = 0;
+  S.lastStudied = null;
+  saveState();
+  screen = 'home';
+  render();
+}
+
+// ═══════════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════════
+loadState();
+render();
+</script>
+</body>
+</html>
