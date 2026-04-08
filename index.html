@@ -3,10 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+<!-- PWA core -->
+<meta name="application-name" content="Italiano B1">
+<meta name="theme-color" content="#D4714A">
+<link rel="manifest" id="pwa-manifest">
+
+<!-- iOS / Safari -->
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="theme-color" content="#FFF8F0">
-<title>🇮🇹 Italiano per Spagnoli</title>
+<meta name="apple-mobile-web-app-title" content="Italiano B1">
+<link rel="apple-touch-icon" id="apple-icon">
+
+<!-- Android / Chrome -->
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="icon" type="image/png" id="fav-icon">
+
+<title>Italiano B1</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -1316,6 +1329,125 @@ function renderSetup() {
 }
 
 function startApp(){S.startDate=todayStr();S.streak=0;S.lastStudied=null;S.unlockedDay=1;saveState();screen='home';render();}
+
+// ═══ PWA SETUP ═══
+(function initPWA() {
+  // ── 1. Generar icono SVG en canvas → PNG base64 ──
+  const canvas = document.createElement('canvas');
+  canvas.width = 512; canvas.height = 512;
+  const ctx = canvas.getContext('2d');
+
+  // Fondo redondeado color terra
+  const r = 90;
+  ctx.beginPath();
+  ctx.moveTo(r, 0); ctx.lineTo(512-r, 0);
+  ctx.quadraticCurveTo(512, 0, 512, r);
+  ctx.lineTo(512, 512-r);
+  ctx.quadraticCurveTo(512, 512, 512-r, 512);
+  ctx.lineTo(r, 512);
+  ctx.quadraticCurveTo(0, 512, 0, 512-r);
+  ctx.lineTo(0, r);
+  ctx.quadraticCurveTo(0, 0, r, 0);
+  ctx.closePath();
+  const grad = ctx.createLinearGradient(0,0,512,512);
+  grad.addColorStop(0, '#E07A52');
+  grad.addColorStop(1, '#B5482A');
+  ctx.fillStyle = grad;
+  ctx.fill();
+
+  // Franja bandera italiana — verde
+  ctx.fillStyle = '#2E8B57';
+  ctx.fillRect(0, 0, 170, 512);
+  // Quitar fuera del clip (solo la esquina izquierda)
+  ctx.beginPath();
+  ctx.moveTo(r, 0); ctx.lineTo(170, 0); ctx.lineTo(170, 512); ctx.lineTo(r, 512);
+  ctx.quadraticCurveTo(0, 512, 0, 512-r);
+  ctx.lineTo(0, r);
+  ctx.quadraticCurveTo(0, 0, r, 0);
+  ctx.closePath();
+  ctx.fillStyle = '#2E8B57';
+  ctx.fill();
+
+  // Franja roja derecha
+  ctx.beginPath();
+  ctx.moveTo(342, 0); ctx.lineTo(512-r, 0);
+  ctx.quadraticCurveTo(512, 0, 512, r);
+  ctx.lineTo(512, 512-r);
+  ctx.quadraticCurveTo(512, 512, 512-r, 512);
+  ctx.lineTo(342, 512);
+  ctx.closePath();
+  ctx.fillStyle = '#CE2B37';
+  ctx.fill();
+
+  // Fondo blanco central
+  ctx.fillStyle = '#FFF8F0';
+  ctx.fillRect(170, 0, 172, 512);
+
+  // Texto "IT" central
+  ctx.fillStyle = '#2A2118';
+  ctx.font = 'bold 180px serif';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('IT', 256, 230);
+
+  // Texto "B1" más pequeño debajo
+  ctx.fillStyle = '#D4714A';
+  ctx.font = 'bold 110px sans-serif';
+  ctx.fillText('B1', 256, 370);
+
+  const iconDataURL = canvas.toDataURL('image/png');
+
+  // ── 2. Aplicar icono ──
+  document.getElementById('apple-icon').href = iconDataURL;
+  document.getElementById('fav-icon').href = iconDataURL;
+
+  // ── 3. Manifest dinámico ──
+  const manifest = {
+    name: 'Italiano per Spagnoli — B1',
+    short_name: 'Italiano B1',
+    description: 'Aprende italiano desde cero hasta B1 con SRS científico',
+    start_url: './',
+    display: 'standalone',
+    orientation: 'portrait',
+    background_color: '#FFF8F0',
+    theme_color: '#D4714A',
+    lang: 'es',
+    icons: [
+      { src: iconDataURL, sizes: '192x192', type: 'image/png', purpose: 'any maskable' },
+      { src: iconDataURL, sizes: '512x512', type: 'image/png', purpose: 'any maskable' },
+    ],
+    categories: ['education', 'productivity'],
+    screenshots: []
+  };
+  const manifestBlob = new Blob([JSON.stringify(manifest)], {type:'application/manifest+json'});
+  const manifestURL = URL.createObjectURL(manifestBlob);
+  document.getElementById('pwa-manifest').href = manifestURL;
+
+  // ── 4. Service Worker inline (offline total) ──
+  const swCode = `
+const CACHE = 'italiano-b1-v1';
+self.addEventListener('install', e => {
+  self.skipWaiting();
+  e.waitUntil(caches.open(CACHE).then(c => c.addAll(['./', location.href])));
+});
+self.addEventListener('activate', e => {
+  e.waitUntil(clients.claim());
+});
+self.addEventListener('fetch', e => {
+  e.respondWith(
+    caches.match(e.request).then(r => r || fetch(e.request).then(res => {
+      return caches.open(CACHE).then(c => { c.put(e.request, res.clone()); return res; });
+    }).catch(() => caches.match('./')))
+  );
+});`;
+  if ('serviceWorker' in navigator) {
+    const swBlob = new Blob([swCode], {type:'application/javascript'});
+    const swURL = URL.createObjectURL(swBlob);
+    navigator.serviceWorker.register(swURL, {scope: './'})
+      .then(() => console.log('✅ SW registered'))
+      .catch(e => console.log('SW error:', e));
+  }
+})();
 
 // ═══ INIT ═══
 loadState();
