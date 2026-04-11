@@ -37,7 +37,7 @@ body{
 }
 #app{padding-bottom:80px;min-height:100dvh}
 
-/* NAV — 6 items */
+/* NAV — 7 items */
 nav{
   position:fixed;bottom:0;left:50%;transform:translateX(-50%);
   width:100%;max-width:480px;background:var(--paper);
@@ -46,11 +46,11 @@ nav{
 }
 .nt{
   flex:1;display:flex;flex-direction:column;align-items:center;
-  padding:8px 2px 12px;cursor:pointer;border:none;background:none;
-  color:var(--ink2);font-family:'Nunito',sans-serif;font-size:9px;font-weight:800;
-  letter-spacing:.01em;gap:2px;transition:color .2s;
+  padding:7px 1px 11px;cursor:pointer;border:none;background:none;
+  color:var(--ink2);font-family:'Nunito',sans-serif;font-size:8.5px;font-weight:800;
+  letter-spacing:.01em;gap:1px;transition:color .2s;
 }
-.nt .ni{font-size:19px;transition:transform .2s;display:block}
+.nt .ni{font-size:18px;transition:transform .2s;display:block}
 .nt.act{color:var(--terra)}
 .nt.act .ni{transform:scale(1.18)}
 
@@ -219,6 +219,42 @@ nav{
 @keyframes bounce{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
 .setup h1{font-family:'Playfair Display',serif;font-size:25px;font-weight:700;margin-bottom:8px}
 .setup-note{background:linear-gradient(135deg,#FFF3E8,#FFE5CE);border-radius:14px;padding:13px 14px;margin:14px 0;font-size:13px;font-weight:700;color:var(--terra);box-shadow:var(--sh)}
+
+/* TEST */
+.test-top{padding:50px 16px 12px;display:flex;align-items:center;gap:10px}
+.test-pb{flex:1;height:8px;background:rgba(42,33,24,.08);border-radius:4px;overflow:hidden}
+.test-pb-fill{height:100%;background:linear-gradient(90deg,#7A5F9E,#9B7BC0);border-radius:4px;transition:width .4s ease}
+.test-pb-lbl{font-size:12px;font-weight:800;color:var(--ink2);white-space:nowrap}
+.test-q-card{background:var(--paper);border-radius:20px;padding:22px 18px;box-shadow:var(--sh);margin:0 16px 14px}
+.test-q-meta{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--ink2);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.test-q-badge{padding:2px 9px;border-radius:20px;font-size:10px;font-weight:800;background:rgba(122,95,158,.12);color:#7A5F9E}
+.test-q-text{font-size:16px;font-weight:800;line-height:1.4;color:var(--ink)}
+.test-opts{display:flex;flex-direction:column;gap:9px;padding:0 16px 16px}
+.test-opt{
+  background:var(--paper);border:2px solid rgba(42,33,24,.09);border-radius:13px;
+  padding:13px 14px;text-align:left;font-family:'Nunito',sans-serif;
+  font-size:14px;font-weight:700;color:var(--ink);cursor:pointer;
+  transition:all .18s;display:flex;align-items:center;gap:10px;
+}
+.test-opt:active{transform:scale(.98)}
+.test-opt.selected-ok{background:rgba(91,168,122,.14);border-color:var(--ok);color:#1E6040}
+.test-opt.selected-err{background:rgba(206,74,90,.12);border-color:var(--err);color:#8B1A26}
+.test-opt.show-ok{background:rgba(91,168,122,.1);border-color:var(--ok);color:#1E6040}
+.test-opt.disabled{cursor:default;opacity:.6}
+.test-opt-letter{width:24px;height:24px;border-radius:50%;background:rgba(42,33,24,.08);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;flex-shrink:0}
+.test-result-card{background:var(--paper);border-radius:14px;padding:12px 14px;box-shadow:var(--sh);margin-bottom:10px;border-left:4px solid transparent}
+.test-result-card.ok{border-color:var(--ok)}
+.test-result-card.err{border-color:var(--err)}
+.test-result-q{font-size:13px;font-weight:800;margin-bottom:6px;display:flex;gap:8px;align-items:flex-start}
+.test-result-ans{font-size:12.5px;font-weight:700;padding:4px 10px;border-radius:8px;margin-bottom:6px;display:inline-block}
+.test-result-ans.ok{background:rgba(91,168,122,.14);color:#1E6040}
+.test-result-ans.err{background:rgba(206,74,90,.12);color:#8B1A26}
+.test-result-just{font-size:12px;color:var(--ink2);font-weight:600;line-height:1.5}
+.test-gram-link{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:800;color:var(--blue);background:rgba(74,127,181,.1);border-radius:8px;padding:4px 9px;margin-top:5px;cursor:pointer;border:none;font-family:'Nunito',sans-serif}
+.test-score-c{background:linear-gradient(145deg,#F0EBF8,#E4D9F0);border:2px solid rgba(122,95,158,.25);border-radius:20px;padding:28px 20px;text-align:center;box-shadow:var(--sh);margin-bottom:12px}
+.test-score-e{font-size:64px;margin-bottom:10px}
+.test-score-n{font-size:48px;font-weight:900;color:#7A5F9E;line-height:1}
+.test-score-lbl{font-size:13px;font-weight:700;color:var(--ink2);margin-top:4px}
 </style>
 </head>
 <body>
@@ -928,7 +964,118 @@ const GRAMMAR = [
   },
 ];
 
-const PLAN = [
+// ═══════════════════════════════════════════════════════
+// TEST QUESTIONS — pool B1
+// w = semana mínima para que aparezca · gram = id de sección gramatical
+// ═══════════════════════════════════════════════════════
+const QUESTIONS = [
+  // ── SEMANA 1 ──
+  {id:1,w:1,q:"¿Cómo se dice 'gracias' en italiano?",opts:["prego","grazie","scusa","ciao"],ans:1,just:"«Grazie» = gracias. «Prego» = de nada. No confundas: ¡son la pareja perfecta!",gram:"art"},
+  {id:2,w:1,q:"¿Qué significa «prego»?",opts:["por favor solo","gracias","de nada / por favor / adelante","hola"],ans:2,just:"«Prego» tiene tres usos: respuesta a 'grazie' (de nada), petición educada (por favor) e invitación a pasar (adelante). Es una de las palabras más versátiles del italiano.",gram:null},
+  {id:3,w:1,q:"¿Cuál es el artículo masculino singular para palabras que empiezan por consonante normal, como 'libro'?",opts:["lo","la","il","l'"],ans:2,just:"«Il» se usa ante sustantivos masculinos que empiezan por consonante normal. «Lo» es para s+consonante, z, gn, ps. «L'» es para palabras que empiezan por vocal.",gram:"art"},
+  {id:4,w:1,q:"Para saludar formalmente por la mañana dices...",opts:["Buonasera","Ciao","Buongiorno","Arrivederci"],ans:2,just:"«Buongiorno» = buenos días (formal/informal). «Buonasera» = buenas tardes/noches. «Ciao» es informal y vale para todo el día.",gram:null},
+  {id:5,w:1,q:"¿Cuál es el artículo correcto para «amica» (amiga)?",opts:["il","lo","la","l'"],ans:3,just:"«Amica» empieza por vocal, así que el artículo elide: «l'amica». Esta regla aplica a sustantivos femeninos Y masculinos que empiezan por vocal.",gram:"art"},
+  {id:6,w:1,q:"¿Qué significa «non capisco»?",opts:["no me gusta","no tengo","no entiendo","no sé"],ans:2,just:"«Capisco» viene de «capire» (entender/comprender). «Non capisco» = no entiendo. Útil para pedir que repitan más despacio.",gram:null},
+  {id:7,w:1,q:"¿Cómo te presentas en italiano?",opts:["Come stai?","Mi chiamo...","Arrivederci","Per favore"],ans:1,just:"«Mi chiamo...» = me llamo... Es el equivalente de 'mi nombre es'. También puedes decir «Sono...» (soy...).",gram:"pron"},
+  {id:8,w:1,q:"El artículo «lo» se usa ante palabras masculinas que empiezan por...",opts:["vocal","cualquier consonante","s + consonante, z, gn","la letra m"],ans:2,just:"«Lo» aparece ante grupos consonánticos difíciles: s+consonante (lo studente), z (lo zaino), gn (lo gnomo), ps (lo psicologo). En plural es «gli».",gram:"art"},
+  {id:9,w:1,q:"¿Cómo preguntas cuánto cuesta algo?",opts:["Dov'è?","Come stai?","Quanto costa?","Chi sei?"],ans:2,just:"«Quanto costa?» = ¿cuánto cuesta? «Quanto costano?» se usa para varios artículos en plural. Recuerda que «quanto» puede ser pregunta o exclamación.",gram:null},
+  {id:10,w:1,q:"¿Qué significa «scusi»?",opts:["gracias (formal)","disculpe (formal)","hasta luego","hola (formal)"],ans:1,just:"«Scusi» es la forma formal de «scusa». Se usa para llamar la atención de alguien o pedir perdón en contextos formales. Con el dependiente, el camarero o un desconocido adulto.",gram:null},
+  {id:11,w:1,q:"¿Cómo preguntas dónde está algo?",opts:["Come si dice?","Quanto costa?","Dov'è...?","Chi è?"],ans:2,just:"«Dov'è?» = ¿dónde está? Viene de «dove» (donde) + «è» (es/está). Para preguntar por varios lugares: «Dove sono...?»",gram:null},
+  {id:12,w:1,q:"«Arrivederci» equivale a...",opts:["buenos días","¡hasta luego!","¿cómo estás?","de nada"],ans:1,just:"«Arrivederci» = hasta luego / adiós (algo formal). Más informal: «Ciao». Muy formal: «Arrivederla». Contiene «arrivare» (llegar) + «vederci» (vernos).",gram:null},
+  // ── SEMANA 2 ──
+  {id:13,w:2,q:"¿Cuánto es «cinque» en español?",opts:["cuatro","seis","cinco","siete"],ans:2,just:"Cinque = cinco. Recuerda la secuencia: uno, due, tre, quattro, cinque, sei, sette, otto, nove, dieci.",gram:null},
+  {id:14,w:2,q:"¿Cómo se dice 'rojo' en italiano?",opts:["rosso","blu","verde","giallo"],ans:0,just:"Rosso = rojo. Los colores en italiano concuerdan con el género: rosso (m), rossa (f). «Una macchina rossa» = un coche rojo.",gram:"adj"},
+  {id:15,w:2,q:"«Fratello» significa...",opts:["padre","hijo","hermano","marido"],ans:2,just:"Fratello = hermano. Sorella = hermana. Una familia: padre, madre, fratello, sorella, figlio/figlia.",gram:null},
+  {id:16,w:2,q:"¿Cuál es el plural de «libro»?",opts:["libros","libre","libri","libro"],ans:2,just:"Los sustantivos masculinos en -o forman el plural en -i: libro → libri. Los femeninos en -a forman el plural en -e: casa → case.",gram:"nom"},
+  {id:17,w:2,q:"¿Cómo se dice 'pequeño' en italiano?",opts:["grande","piccolo","vecchio","bello"],ans:1,just:"Piccolo = pequeño. Su contrario es «grande» (grande/alto). Recuerda que los adjetivos concuerdan: piccolo/piccola, piccoli/piccole.",gram:"adj"},
+  {id:18,w:2,q:"«Moglie» significa...",opts:["madre","hija","hermana","esposa/mujer"],ans:3,just:"Moglie = esposa/mujer (en el sentido de cónyuge). Plural irregular: le mogli. «Mio marito» = mi marido / «Mia moglie» = mi esposa.",gram:null},
+  {id:19,w:2,q:"¿Cuál es el plural de «amica»?",opts:["amiche","amici","amicas","amice"],ans:0,just:"Las palabras femeninas en -ca forman el plural en -che para mantener el sonido /k/: amica → amiche. Si fuera masculino: amico → amici.",gram:"nom"},
+  {id:20,w:2,q:"«Giovane» significa...",opts:["viejo","grande","joven","bonito"],ans:2,just:"Giovane = joven. Su contrario es «vecchio» (viejo). Es uno de los adjetivos de dos formas: giovane/giovani (igual para m. y f.).",gram:"adj"},
+  {id:21,w:2,q:"Para preguntar «¿quién es?» dices...",opts:["Cosa è?","Dove è?","Chi è?","Come è?"],ans:2,just:"Chi = quién. Cosa = qué. Dove = dónde. Come = cómo. Son las cuatro preguntas de oro del italiano.",gram:null},
+  {id:22,w:2,q:"«Figlio» significa...",opts:["hermano","padre","hijo","marido"],ans:2,just:"Figlio = hijo. Figlia = hija. Plural: figli/figlie. «Hai figli?» = ¿Tienes hijos?",gram:null},
+  {id:23,w:2,q:"Los sustantivos italianos terminados en -ione son normalmente...",opts:["masculinos","femeninos","variables","neutros"],ans:1,just:"Las palabras en -ione son siempre femeninas: la stazione, la comunicazione, la nazione. Muy útil porque muchas terminaciones -ción del español = -zione en italiano.",gram:"nom"},
+  {id:24,w:2,q:"¿Cuál es el comparativo de superioridad en italiano?",opts:["tanto... quanto","meno... di","più... di/che","il più..."],ans:2,just:"«Più... di» = más... que (comparando dos cosas del mismo tipo). «Più... che» se usa cuando se comparan dos adjetivos, adverbios o verbos referidos a la misma persona.",gram:"adj"},
+  // ── SEMANA 3 ──
+  {id:25,w:3,q:"«Io __ stanco» — ¿cuál es la forma correcta de «essere»?",opts:["sei","è","sono","siamo"],ans:2,just:"La conjugación de «essere»: io sono, tu sei, lui/lei è, noi siamo, voi siete, loro sono. Es irregular y fundamental: equivale a ser Y estar.",gram:"pres"},
+  {id:26,w:3,q:"«Tu __ un libro» — ¿cuál es la forma correcta de «avere»?",opts:["ho","ha","hai","abbiamo"],ans:2,just:"«Avere»: io ho, tu hai, lui/lei ha, noi abbiamo, voi avete, loro hanno. Nótese la h muda al inicio, que diferencia «ho» (tengo) de «o» (o bien).",gram:"pres"},
+  {id:27,w:3,q:"«Noi __ a Roma» — ¿cuál es la forma correcta de «andare»?",opts:["vanno","andate","vado","andiamo"],ans:3,just:"«Andare»: vado, vai, va, andiamo, andate, vanno. Las formas de noi/voi son regulares; las de io/tu/lui/loro son irregulares.",gram:"pres"},
+  {id:28,w:3,q:"¿Cuál es «io» de «volere»?",opts:["vuole","voglio","vuoi","vogliono"],ans:1,just:"«Volere»: voglio, vuoi, vuole, vogliamo, volete, vogliono. «Voglio» = quiero. Es uno de los verbos modales más usados.",gram:"pres"},
+  {id:29,w:3,q:"«Io __ studiare questa sera» — ¿cuál es la forma correcta de «dovere»?",opts:["deve","devo","devi","dobbiamo"],ans:1,just:"«Dovere»: devo, devi, deve, dobbiamo, dovete, devono. «Devo» = debo/tengo que. Similar al español 'deber', pero recuerda que en italiano va seguido de infinitivo.",gram:"pres"},
+  {id:30,w:3,q:"«Loro __ molto» — ¿cuál es la forma correcta de «parlare»?",opts:["parlano","parlate","parla","parliamo"],ans:0,just:"Los verbos en -ARE: la 3ª persona plural termina en -ano: parlano, mangiano, guardano. Ojo: el acento cae en la antepenúltima sílaba: PARlano.",gram:"pres"},
+  {id:31,w:3,q:"¿Cuál es «io» de «fare»?",opts:["fa","faccio","fai","facciamo"],ans:1,just:"«Fare» es muy irregular: faccio, fai, fa, facciamo, fate, fanno. «Faccio» = hago. Aparece en expresiones clave: faccio sport, faccio la spesa, faccio una domanda.",gram:"pres"},
+  {id:32,w:3,q:"Los verbos -IRE de tipo «capire/finire» tienen un elemento especial. En «io capisco», la terminación inusual es...",opts:["-isco (en sing. y 3ª pl.)","solo en plural","-isco en todas las formas","solo en io"],ans:0,just:"Los verbos -IRE tipo «capire» añaden -isc- en io, tu, lui/loro: capisco, capisci, capisce, capiscono. Pero NOi y VOI son regulares: capiamo, capite.",gram:"pres"},
+  {id:33,w:3,q:"«Lui __ italiano» — ¿cuál es la forma correcta de «parlare»?",opts:["parli","parlate","parla","parlano"],ans:2,just:"3ª persona singular de -ARE termina en -a: lui/lei parla, mangia, arriva. No confundir con el congiuntivo que también usa -i.",gram:"pres"},
+  {id:34,w:3,q:"¿Cuál es «io» de «venire»?",opts:["vieni","viene","vengo","veniamo"],ans:2,just:"«Venire»: vengo, vieni, viene, veniamo, venite, vengono. «Vengo» = vengo. Nota el cambio de raíz: ven- → veng-.",gram:"pres"},
+  {id:35,w:3,q:"En italiano, el sujeto pronominal (io, tu, lui...) normalmente...",opts:["siempre se usa","se omite porque la conjugación lo indica","solo se omite en presente","es obligatorio en preguntas"],ans:1,just:"A diferencia del inglés, en italiano el pronombre sujeto se omite habitualmente: «Parlo italiano» en vez de «Io parlo italiano». Se usa solo para énfasis o contraste.",gram:"pron"},
+  {id:36,w:3,q:"«Posso entrare?» significa...",opts:["Debo entrar","¿Quiero entrar?","¿Puedo entrar?","¿Sé entrar?"],ans:2,just:"«Posso» = puedo (io de «potere»). «Posso + infinitivo» = puedo + infinitivo. Es la forma más educada para pedir permiso.",gram:"pres"},
+  // ── SEMANA 4 ──
+  {id:37,w:4,q:"El «passato prossimo» se forma con...",opts:["imperfetto + participio","presente di essere/avere + participio","futuro + participio","solo con avere"],ans:1,just:"Passato prossimo = auxiliar en presente (essere o avere) + participio pasado. La elección del auxiliar es la dificultad clave de este tiempo.",gram:"pass"},
+  {id:38,w:4,q:"¿Por qué «andare» usa «essere» en passato prossimo?",opts:["porque empieza por vocal","porque es un verbo de movimiento/desplazamiento","porque tiene participio irregular","por regla arbitraria"],ans:1,just:"«Essere» se usa como auxiliar con verbos de movimiento (andare, venire, arrivare, partire), cambio de estado y verbos reflexivos. Truco: si el verbo puede tener un CD, usa avere.",gram:"pass"},
+  {id:39,w:4,q:"¿Cuál es el participio pasado de «vedere»?",opts:["veduto (solo)","visto","veddo","vedendo"],ans:1,just:"«Visto» es el participio irregular de «vedere». Otros irregulares clave: fatto (fare), detto (dire), scritto (scrivere), letto (leggere), preso (prendere).",gram:"pass"},
+  {id:40,w:4,q:"Con «essere» en passato prossimo, el participio...",opts:["siempre termina en -o","siempre termina en -i","concuerda en género y número con el sujeto","es invariable"],ans:2,just:"Con essere, el participio concuerda: Marco è andato · Maria è andata · Siamo andati · Sono andate. Con avere, el participio es invariable: ho mangiato (siempre -o).",gram:"pass"},
+  {id:41,w:4,q:"«Vorrei» es la forma más educada para pedir algo porque es...",opts:["presente de volere","imperativo de volere","condizionale de volere","subjuntivo de volere"],ans:2,just:"«Vorrei» = me gustaría / quisiera (condizionale de volere). Es más cortés que «voglio» (quiero). En bares y restaurantes siempre usa «vorrei».",gram:"cond"},
+  {id:42,w:4,q:"¿Cuál es el participio pasado de «fare»?",opts:["fato","faciuto","fatto","faccio"],ans:2,just:"«Fatto» es el participio irregular de «fare». Recuerda: ho fatto = hice/he hecho. Aparece en: ho fatto la spesa, ho fatto sport, ho fatto una domanda.",gram:"pass"},
+  {id:43,w:4,q:"«La settimana scorsa» significa...",opts:["la semana próxima","esta semana","la semana pasada","hace semanas"],ans:2,just:"«Scorso/a» = pasado/a. La settimana scorsa = la semana pasada. L'anno scorso = el año pasado. Il mese scorso = el mes pasado.",gram:null},
+  {id:44,w:4,q:"¿Cuál es el auxiliar de «mangiare» en passato prossimo?",opts:["essere","avere","potere","fare"],ans:1,just:"«Mangiare» usa «avere» porque es transitivo (puede tener complemento directo: ho mangiato LA pizza). La regla es: CD posible → avere.",gram:"pass"},
+  {id:45,w:4,q:"«Ieri» significa...",opts:["hoy","mañana","ayer","luego"],ans:2,just:"Ieri = ayer. Oggi = hoy. Domani = mañana. Son tres palabras esenciales para situar acciones en el tiempo.",gram:null},
+  {id:46,w:4,q:"«Ho detto» es el passato prossimo de...",opts:["dovere","dare","dire","diventare"],ans:2,just:"Dire → detto (participio irregular). Ho detto = dije/he dicho. Otros pares irregular importantes: essere→stato, avere→avuto, venire→venuto.",gram:"pass"},
+  {id:47,w:4,q:"Para pedir la cuenta en un restaurante dices...",opts:["Vorrei il menù","Il conto, per favore!","Dov'è il bagno?","Buonasera"],ans:1,just:"«Il conto» = la cuenta. «Cameriere, il conto per favore!» es la frase clásica. También puedes hacer gesto de escribir en la palma.",gram:null},
+  {id:48,w:4,q:"«Sono stato/a a Roma» usa essere porque...",opts:["Roma empieza por R","'stare' es de estado/posición","el sujeto es plural","es un verbo transitivo"],ans:1,just:"«Stare» y «essere» usan essere como auxiliar. Son verbos de estado. Con essere, acuerda el participio: sono stato (m.), sono stata (f.).",gram:"pass"},
+  // ── SEMANA 5 ──
+  {id:49,w:5,q:"«A sinistra» significa...",opts:["todo recto","a la derecha","a la izquierda","aquí cerca"],ans:2,just:"Sinistra = izquierda. Destra = derecha. «Gira a sinistra» = gira a la izquierda. Truco: sinistra tiene la misma raíz que 'siniestro' en español.",gram:null},
+  {id:50,w:5,q:"«Camera» en italiano significa...",opts:["cámara fotográfica","habitación (de hotel/casa)","camión","calle"],ans:1,just:"¡FALSO AMIGO! «Camera» = habitación, NO cámara fotográfica. Para decir cámara de fotos: «macchina fotografica» o «fotocamera».",gram:null},
+  {id:51,w:5,q:"«Vado __ Roma» — ¿qué preposición es correcta?",opts:["in","di","a","da"],ans:2,just:"Se usa «a» con ciudades: vado a Roma, a Milano, a Madrid. Con países/regiones se usa «in»: vado in Italia, in Spagna.",gram:"prep"},
+  {id:52,w:5,q:"«Nel» = «in» + ...",opts:["lo","la","il","l'"],ans:2,just:"«Nel» = in + il. Las preposiciones articuladas: in+il=nel, in+lo=nello, in+la=nella, in+l'=nell', in+i=nei, in+gli=negli, in+le=nelle.",gram:"prep"},
+  {id:53,w:5,q:"«Vengo dalla Spagna» — ¿qué preposición articulada es «dalla»?",opts:["di + la","da + la","de + la","del + a"],ans:1,just:"«Dalla» = da + la. «Da» indica origen: vengo da Roma (sin artículo para ciudades), vengo dalla Spagna (con artículo para países femeninos).",gram:"prep"},
+  {id:54,w:5,q:"¿Qué significa «il ritardo»?",opts:["el retraso","el pasaporte","el billete","la llegada"],ans:0,just:"«Il ritardo» = el retraso. «In ritardo» = con retraso. «Il treno è in ritardo di 20 minuti» = el tren lleva 20 minutos de retraso.",gram:null},
+  {id:55,w:5,q:"«Vicino» es lo contrario de...",opts:["dentro","sopra","lontano","davanti"],ans:2,just:"Vicino = cerca. Lontano = lejos. «Il museo è vicino alla stazione» = el museo está cerca de la estación.",gram:null},
+  {id:56,w:5,q:"«Sul tavolo» significa...",opts:["bajo la mesa","junto a la mesa","sobre la mesa","dentro de la mesa"],ans:2,just:"«Sul» = su + il = sobre el. «Sul tavolo» = sobre la mesa. «Su» expresa posición encima de algo.",gram:"prep"},
+  {id:57,w:5,q:"¿Cómo pides confirmación de que vas bien por un camino?",opts:["Dov'è il bagno?","È questa la strada per...?","Quanto costa?","Vorrei un biglietto"],ans:1,just:"«È questa la strada per...?» = ¿Es este el camino para...? También puedes usar «Vado bene per...?» = ¿Voy bien hacia...?",gram:null},
+  {id:58,w:5,q:"«La prenotazione» significa...",opts:["la reserva","la llegada","el billete","el equipaje"],ans:0,just:"«La prenotazione» = la reserva. «Ho una prenotazione» = tengo una reserva. «Prenotare» = reservar.",gram:null},
+  {id:59,w:5,q:"«Sempre dritto» en indicaciones de camino significa...",opts:["a la derecha","a la izquierda","todo recto","detrás","al final"],ans:2,just:"«Sempre dritto» = todo recto / siempre recto. «Dritto» también puede ser «diritto». Es la indicación más básica cuando preguntas el camino.",gram:null},
+  {id:60,w:5,q:"Con el verbo «viaggiare» (viajar) en presente, «noi» sería...",opts:["viaggiamo","viaggiate","viaggiano","viaggi"],ans:0,just:"Los verbos en -iare (mangiare, viaggiare...) en noi pierden la -i extra: noi mangiamo, noi viaggiamo (no: mangiamo con doble i).",gram:"pres"},
+  // ── SEMANA 6 ──
+  {id:61,w:6,q:"«Sto mangiando» es un ejemplo de...",opts:["passato prossimo","presente progressivo (stare+gerundio)","futuro immediato","imperfetto"],ans:1,just:"«Stare + gerundio» expresa una acción en progreso en el momento de hablar: sto mangiando = estoy comiendo. Funciona exactamente como el español.",gram:"ger"},
+  {id:62,w:6,q:"¿Cuál es el gerundio de «fare»?",opts:["fando","farendo","faccendo","facendo"],ans:3,just:"«Facendo» es el gerundio irregular de «fare». Otros irregulares: dire → dicendo, bere → bevendo. Los regulares: -are→ando, -ere/-ire→endo.",gram:"ger"},
+  {id:63,w:6,q:"«Di solito» significa...",opts:["a veces","nunca","a menudo","normalmente / por lo general"],ans:3,just:"«Di solito» = normalmente / de costumbre. «Di solito mi alzo alle sette» = normalmente me levanto a las siete.",gram:null},
+  {id:64,w:6,q:"«Subito» significa...",opts:["subido (past part. de subir)","enseguida / inmediatamente","arriba","luego / después"],ans:1,just:"¡FALSO AMIGO! «Subito» = enseguida, inmediatamente. NO tiene nada que ver con 'subido'. «Vengo subito!» = ¡Voy enseguida!",gram:null},
+  {id:65,w:6,q:"«Spesso» significa...",opts:["a veces","nunca","a menudo","siempre"],ans:2,just:"«Spesso» = a menudo / frecuentemente. «Qualche volta» = a veces. «Mai» (con «non») = nunca. «Sempre» = siempre.",gram:null},
+  {id:66,w:6,q:"«Mi alzo» es un verbo reflexivo. ¿Cuál es la forma para «lui»?",opts:["mi alza","si alza","ti alza","lo alza"],ans:1,just:"Los verbos reflexivos usan: mi (io), ti (tu), si (lui/lei/loro), ci (noi), vi (voi). «Lui si alza» = él se levanta.",gram:"pron"},
+  {id:67,w:6,q:"El gerundio de los verbos -ARE termina en...",opts:["-endo","-ando","-iendo","-ento"],ans:1,just:"-ARE → -ando: parlando, mangiando, guardando. Los verbos -ERE e -IRE forman el gerundio en -endo: vedendo, dormendo.",gram:"ger"},
+  {id:68,w:6,q:"«Non vado MAI al cinema» — «mai» en esta frase significa...",opts:["a veces","siempre","nunca","raramente"],ans:2,just:"«Mai» con «non» = nunca. Sin «non», «mai» puede significar «alguna vez» en preguntas: «Sei mai stato a Roma?» = ¿Has estado alguna vez en Roma?",gram:null},
+  {id:69,w:6,q:"¿Cuál es el gerundio de «dire»?",opts:["direndo","dendo","dicendo","dirando"],ans:2,just:"«Dicendo» es el gerundio irregular de «dire». Recuerda: dare→dando, dire→dicendo, fare→facendo, bere→bevendo.",gram:"ger"},
+  {id:70,w:6,q:"«Lo stipendio» significa...",opts:["el horario","el empleo","el sueldo/salario","el contrato"],ans:2,just:"«Lo stipendio» = el sueldo/salario. Lleva «lo» porque empieza por st- (s + consonante). Plural: gli stipendi.",gram:"art"},
+  {id:71,w:6,q:"«Il fine settimana» es...",opts:["el horario semanal","el fin de semana","el día laborable","la semana laboral"],ans:1,just:"«Il fine settimana» = el fin de semana. Plural: i fine settimana (invariable). «Cosa fai questo fine settimana?» = ¿Qué haces este fin de semana?",gram:null},
+  {id:72,w:6,q:"«Sto lavorando» significa...",opts:["trabajé","trabajaré","estoy trabajando","trabaja"],ans:2,just:"«Stare + gerundio» = estar + gerundio. Sto lavorando = estoy trabajando ahora mismo. Para hablar de rutina usa el presente simple: «Lavoro molto».",gram:"ger"},
+  // ── SEMANA 7 ──
+  {id:73,w:7,q:"«Penso che sia stanco» — ¿por qué se usa «sia» y no «è»?",opts:["es una forma de cortesía","'penso che' introduce una opinión que requiere congiuntivo","es el imperfetto","es el futuro"],ans:1,just:"Después de «penso che», «credo che» y otras expresiones de opinión se usa el congiuntivo. «Sia» = congiuntivo de «essere». En español: pienso que esté.",gram:"cong"},
+  {id:74,w:7,q:"«Sono d'accordo» significa...",opts:["estoy equivocado","tengo razón","no sé","estoy de acuerdo"],ans:3,just:"«Essere d'accordo» = estar de acuerdo. «Non sono d'accordo» = no estoy de acuerdo. Es una expresión fija muy frecuente en debates y conversaciones.",gram:null},
+  {id:75,w:7,q:"«Mi piace il caffè» — ¿cómo funciona «mi piace»?",opts:["yo gusto el café","el café me gusta (a mí)","me gusta yo el café","yo placeo el café"],ans:1,just:"«Piacere» funciona al revés: el sujeto es lo que gusta. «Mi piace» = me gusta (literalmente: me place). «Mi piacciono i libri» = me gustan los libros (plural).",gram:"pron"},
+  {id:76,w:7,q:"El pronombre de objeto directo para «Marco» (él) es...",opts:["gli","lo","la","li"],ans:1,just:"CD masculino singular: «lo». «Vedo Marco» → «Lo vedo». CD femenino: «la». CD masculino plural: «li». CD femenino plural: «le».",gram:"pron"},
+  {id:77,w:7,q:"«Però» equivale a...",opts:["también","entonces","pero/sin embargo","aunque"],ans:2,just:"«Però» = pero / sin embargo. Es el conector de contraste más frecuente. «Ma» tiene el mismo uso. «Mi piace, però è caro» = Me gusta, pero es caro.",gram:"conn"},
+  {id:78,w:7,q:"«Quindi» equivale a...",opts:["sin embargo","aunque","también","entonces / por lo tanto"],ans:3,just:"«Quindi» = entonces / por lo tanto. Expresa consecuencia. «Non c'è posto, quindi andiamo altrove» = No hay sitio, entonces vamos a otro lado.",gram:"conn"},
+  {id:79,w:7,q:"¿Dónde van los pronombres de CD e CI respecto al verbo conjugado?",opts:["siempre detrás","siempre antes","depende del tiempo verbal","al final de la frase"],ans:1,just:"Con verbos conjugados, los pronombres van ANTES: «Lo vedo», «Gli parlo». Con infinitivo van DETRÁS unidos: «Voglio vederlo», «Devo parlargli».",gram:"pron"},
+  {id:80,w:7,q:"«Hai ragione» significa...",opts:["estás equivocado","tienes razón","tienes suerte","tienes hambre"],ans:1,just:"«Ragione» = razón. «Hai ragione» = tienes razón. «Hai torto» = estás equivocado. «Dare ragione a qualcuno» = darle la razón a alguien.",gram:null},
+  {id:81,w:7,q:"«Mi dispiace» equivale a...",opts:["me disgusta","lo siento / me sabe mal","no me importa","me alegro"],ans:1,just:"«Mi dispiace» = lo siento / me sabe mal. Viene de «dispiacere» (pesarle a uno). Es la expresión estándar de disculpa o empatía.",gram:null},
+  {id:82,w:7,q:"«Per fortuna» significa...",opts:["por fin","por suerte / afortunadamente","por favor","a propósito"],ans:1,just:"«Per fortuna» = por suerte / afortunadamente. «Purtroppo» = desgraciadamente / lamentablemente. Son las dos caras de la moneda expresiva.",gram:null},
+  {id:83,w:7,q:"El pronombre de objeto indirecto para «lei» (ella) es...",opts:["lo","la","gli","le"],ans:3,just:"CI femenino singular: «le». «Le telefono» = le llamo (a ella). CI masculino: «gli». Plural para ambos: «loro» (formal) o «gli» (coloquial).",gram:"pron"},
+  {id:84,w:7,q:"«Anche se» equivale a...",opts:["también si","y si","aunque","así que"],ans:2,just:"«Anche se» = aunque / incluso si. Va seguido de indicativo (no congiuntivo): «Esco anche se piove» = Salgo aunque llueva.",gram:"conn"},
+  // ── SEMANA 8 ──
+  {id:85,w:8,q:"«Penso che lui __ italiano» — ¿cuál es el congiuntivo de «essere»?",opts:["è","era","sia","sarebbe"],ans:2,just:"Congiuntivo de «essere»: sia, sia, sia, siamo, siate, siano. Aparece frecuentemente con «penso/credo/spero che».",gram:"cong"},
+  {id:86,w:8,q:"«Vorrei» es el condizionale de...",opts:["vedere","venire","volere","valere"],ans:2,just:"«Vorrei» = me gustaría / quisiera (condizionale de volere). Es la forma más útil del condizionale para hispanohablantes: pedir con cortesía.",gram:"cond"},
+  {id:87,w:8,q:"«Se potessi, __ ogni giorno» — condizionale de «viaggiare»",opts:["viaggerò","viaggerei","viaggiassi","viaggereste"],ans:1,just:"El condizionale de los verbos -ARE: la base del futuro + terminaciones -ei, -esti, -ebbe... «Viaggerei» = viajaría. «Se + congiuntivo imperfetto, condizionale».",gram:"cond"},
+  {id:88,w:8,q:"«Bisogna che tu studi» — ¿qué modo verbal es «studi»?",opts:["indicativo","imperativo","congiuntivo","condizionale"],ans:2,just:"«Bisogna che» exige congiuntivo. «Studi» es el congiuntivo de «studiare» para tu/io/lui (las tres primeras personas son iguales en el congiuntivo).",gram:"cong"},
+  {id:89,w:8,q:"«Sebbene» va seguido de...",opts:["indicativo","condizionale","congiuntivo","infinitivo"],ans:2,just:"«Sebbene» = aunque (concesión). Siempre pide congiuntivo: «Sebbene sia tardi, continuo» = aunque sea tarde, continúo. Lo mismo: benché, nonostante (che), malgrado.",gram:"cong"},
+  {id:90,w:8,q:"«Da quanto tempo studi l'italiano?» significa...",opts:["¿Cuánto tiempo llevaba estudiando?","¿Desde hace cuánto tiempo estudias italiano?","¿Cuándo empezaste a estudiar?","¿Cuánto tardas en estudiar?"],ans:1,just:"«Da quanto tempo» = desde hace cuánto tiempo. La respuesta usa «da»: «Studio italiano da due mesi» = Llevo dos meses estudiando italiano (desde hace 2 meses).",gram:null},
+  {id:91,w:8,q:"«In realtà» significa...",opts:["en mi realidad","en efecto","en realidad","en verdad (juramento)"],ans:2,just:"«In realtà» = en realidad. Es un marcador discursivo de B1 para matizar o corregir: «In realtà la situazione è diversa» = En realidad la situación es diferente.",gram:null},
+  {id:92,w:8,q:"«Nonostante» equivale a...",opts:["a causa de","a pesar de (que)","con tal de que","antes de que"],ans:1,just:"«Nonostante» = a pesar de (que). Puede ir seguido de sustantivo o congiuntivo: «Nonostante la pioggia» / «Nonostante sia tardi». Sinónimos: sebbene, benché, malgrado.",gram:"cong"},
+  {id:93,w:8,q:"¿Cuál es el condizionale de «andare» para «io»?",opts:["andrò","andrei","andrebbe","andrassi"],ans:1,just:"Condizionale de «andare»: andrei, andresti, andrebbe, andremmo, andreste, andrebbero. La base es la misma del futuro (andr-) + terminaciones del condizionale.",gram:"cond"},
+  {id:94,w:8,q:"«Prima che» exige...",opts:["indicativo futuro","congiuntivo","condizionale","infinitivo simple"],ans:1,just:"«Prima che» = antes de que. Siempre pide congiuntivo: «Chiamami prima che parta» = llámame antes de que salga. Si el sujeto es el mismo: prima di + infinitivo.",gram:"cong"},
+  {id:95,w:8,q:"«È possibile che arrivi tardi» — ¿qué modo es «arrivi»?",opts:["indicativo presente","imperativo","congiuntivo presente","condizionale"],ans:2,just:"«È possibile che» exige congiuntivo. «Arrivi» es el congiuntivo de «arrivare» para io/tu/lui. Expresiones de posibilidad, duda y necesidad siempre piden congiuntivo.",gram:"cong"},
+  {id:96,w:8,q:"¿Cuál es la diferencia entre «se potessi» y «se posso»?",opts:["ninguna, son sinónimas","potessi es más formal","potessi expresa hipótesis irreal/poco probable; posso expresa condición real","posso es pasado"],ans:2,just:"«Se posso» + presente/futuro = condición real (si puedo, lo hago). «Se potessi» + condizionale = hipótesis irreal o poco probable (si pudiera, haría). Es la diferencia entre el período hypothético real e irreal.",gram:"cond"},
+];
+
+
   {w:1,e:"👋",title:"¡Primeros pasos!",sub:"Saluti · Basi · Supervivencia",color:"#D4714A",bg:"rgba(212,113,74,.1)",
    days:[{d:"Días 1-2",t:"Saluti",c:"Ciao, grazie, prego, scusa, per favore."},{d:"Días 3-4",t:"Basi",c:"Sì, no, come stai, bene/male, non capisco, quanto costa."},{d:"Días 5-6",t:"Preguntas",c:"Dov'è, quando, chi, cosa. Las 4 preguntas de oro."},{d:"Día 7",t:"🔄 Repaso SRS",c:"La app te muestra automáticamente las tarjetas que toca. ¡15 min!"}]},
   {w:2,e:"🔢",title:"Números y familia",sub:"Numeri · Colori · Famiglia",color:"#4A7FB5",bg:"rgba(74,127,181,.1)",
@@ -1051,7 +1198,8 @@ function renderNav() {
   const items = [
     {s:'home',i:'🏠',l:'Hoy'},
     {s:'plan',i:'📅',l:'Plan'},
-    {s:'session',i:'🃏',l:'Sesión'},
+    {s:'session',i:'🃏',l:'Tarjetas'},
+    {s:'test',i:'📝',l:'Test'},
     {s:'vocab',i:'📚',l:'Vocab'},
     {s:'gram',i:'📖',l:'Gramática'},
     {s:'stats',i:'📊',l:'Stats'},
@@ -1060,7 +1208,7 @@ function renderNav() {
 }
 
 function renderScreen() {
-  const map={home:rHome,plan:rPlan,session:rSession,vocab:rVocab,gram:rGram,stats:rStats};
+  const map={home:rHome,plan:rPlan,session:rSession,test:rTest,vocab:rVocab,gram:rGram,stats:rStats};
   return `<div class="scr act">${(map[screen]||rHome)()}</div>`;
 }
 
@@ -1303,7 +1451,222 @@ function rStats() {
   <div style="margin-top:8px"><button class="btn btn-gh" onclick="if(confirm('¿Resetear TODO el progreso?'))resetAll()">🗑️ Resetear progreso (¡cuidado!)</button></div>`;
 }
 
-function resetAll(){S={startDate:null,streak:0,lastStudied:null,cardStates:{},totalCorrect:0,totalWrong:0,unlockedDay:1};saveState();screen='home';render();}
+// ─── TEST ───
+let testSession = null; // {questions, idx, chosen:[], done, reviewing}
+
+function getAvailableQuestions() {
+  const cw = getCurrentWeek();
+  return QUESTIONS.filter(q => q.w <= cw);
+}
+
+function buildDailyTest() {
+  // Seed shuffle by date so each day same 10 questions (deterministic)
+  const pool = getAvailableQuestions();
+  const today = todayStr();
+  let seed = today.replace(/-/g,'').split('').reduce((a,c)=>a+c.charCodeAt(0),0);
+  const seeded = [...pool].sort((a,b) => {
+    seed = (seed * 1664525 + 1013904223) & 0xffffffff;
+    return (seed >>> 0) % 2 === 0 ? 1 : -1;
+  });
+  return seeded.slice(0, Math.min(10, seeded.length));
+}
+
+function startTest() {
+  testSession = { questions: buildDailyTest(), idx: 0, chosen: [], done: false, reviewing: false };
+  render();
+}
+
+function chooseAnswer(optIdx) {
+  if (!testSession || testSession.done) return;
+  const q = testSession.questions[testSession.idx];
+  testSession.chosen[testSession.idx] = optIdx;
+  render();
+}
+
+function nextTestQ() {
+  if (!testSession) return;
+  if (testSession.idx < testSession.questions.length - 1) {
+    testSession.idx++;
+  } else {
+    testSession.done = true;
+    // Save to test log
+    const score = testSession.questions.filter((q,i) => testSession.chosen[i] === q.ans).length;
+    S.testLog = S.testLog || [];
+    S.testLog.push({ date: todayStr(), score, total: testSession.questions.length });
+    if (S.testLog.length > 30) S.testLog = S.testLog.slice(-30);
+    saveState();
+  }
+  render();
+}
+
+function goReview() { testSession.reviewing = true; render(); }
+
+function goGramFromTest(gramId) {
+  openGram = gramId;
+  screen = 'gram';
+  render();
+}
+
+function rTest() {
+  const cw = getCurrentWeek();
+  const available = getAvailableQuestions();
+
+  // No hay preguntas todavía
+  if (available.length === 0) {
+    return `<div class="sess-empty">
+      <div class="be">📝</div>
+      <h2 style="font-family:'Playfair Display',serif">Test no disponible aún</h2>
+      <p>Las preguntas se desbloquean a partir de la Semana 1.<br>¡Completa tu primera sesión de tarjetas!</p>
+      <br><button class="btn btn-p" onclick="goTo('session')">🃏 Ir a las tarjetas</button>
+    </div>`;
+  }
+
+  // Estado: revisando resultados
+  if (testSession && testSession.done && testSession.reviewing) {
+    return rTestReview();
+  }
+
+  // Estado: resultados finales
+  if (testSession && testSession.done) {
+    return rTestDone();
+  }
+
+  // Estado: en medio del test
+  if (testSession && !testSession.done) {
+    return rTestQuestion();
+  }
+
+  // Estado: pantalla inicial
+  const lastLog = (S.testLog || []).filter(t => t.date === todayStr())[0];
+  const todayDone = !!lastLog;
+
+  return `<div class="hd"><h1>📝 Test diario</h1><p>10 preguntas tipo examen oficial B1</p></div>
+  <div style="background:linear-gradient(135deg,#F0EBF8,#E4D9F0);border-radius:18px;padding:18px;margin-bottom:14px;box-shadow:var(--sh)">
+    <div style="font-size:36px;text-align:center;margin-bottom:10px">🎯</div>
+    <div style="font-size:14px;font-weight:800;text-align:center;margin-bottom:6px">Semana ${cw} · ${available.length} preguntas disponibles</div>
+    <div style="font-size:12.5px;color:var(--ink2);font-weight:600;text-align:center;line-height:1.5">Vocabulario · Gramática · Falsos amigos<br>Al terminar: revisión con justificaciones</div>
+  </div>
+  ${todayDone ? `
+  <div style="background:rgba(91,168,122,.12);border-radius:14px;padding:14px 16px;margin-bottom:12px;border:2px solid rgba(91,168,122,.2)">
+    <div style="font-size:14px;font-weight:800;color:var(--ok);margin-bottom:4px">✅ Test de hoy completado</div>
+    <div style="font-size:13px;font-weight:700;color:var(--ink2)">Resultado: ${lastLog.score}/${lastLog.total} · ${Math.round(lastLog.score/lastLog.total*100)}%</div>
+  </div>
+  <button class="btn btn-b" onclick="startTest()">🔄 Repetir test de hoy</button>
+  ` : `<button class="btn btn-p" onclick="startTest()">▶ Empezar test · 10 preguntas 📝</button>`}
+  ${(S.testLog||[]).length > 1 ? `
+  <div class="card" style="margin-top:4px">
+    <div class="sec">📊 Últimos tests</div>
+    ${[...(S.testLog||[])].reverse().slice(0,5).map(t=>`
+      <div class="acc-row">
+        <span style="font-size:12px">${t.date}</span>
+        <span class="acc-val" style="color:${t.score/t.total>=0.7?'var(--ok)':t.score/t.total>=0.5?'var(--gold)':'var(--err)';font-size:14px}">${t.score}/${t.total}</span>
+      </div>`).join('')}
+  </div>` : ''}
+  <div style="background:rgba(201,154,46,.09);border-radius:14px;padding:12px 14px;margin-top:4px">
+    <div style="font-size:12.5px;font-weight:700;color:var(--ink2);line-height:1.5">💡 <strong>Tip:</strong> Si fallas una pregunta, toca «Ver gramática» en la revisión para ir directamente al tema explicado. Luego vuelve al test.</div>
+  </div>`;
+}
+
+function rTestQuestion() {
+  const ts = testSession;
+  const q = ts.questions[ts.idx];
+  const total = ts.questions.length;
+  const pct = (ts.idx / total * 100).toFixed(0);
+  const chosen = ts.chosen[ts.idx];
+  const answered = chosen !== undefined;
+  const letters = ['A','B','C','D'];
+
+  const opts = q.opts.map((opt, i) => {
+    let cls = 'test-opt';
+    if (answered) {
+      if (i === q.ans) cls += ' show-ok';
+      else if (i === chosen && chosen !== q.ans) cls += ' selected-err';
+      else cls += ' disabled';
+    }
+    return `<button class="${cls}" onclick="${answered ? '' : `chooseAnswer(${i})`}" ${answered && i !== q.ans && i !== chosen ? 'disabled' : ''}>
+      <span class="test-opt-letter" style="${answered && i===q.ans?'background:var(--ok);color:#fff':answered&&i===chosen&&chosen!==q.ans?'background:var(--err);color:#fff':''}">${letters[i]}</span>
+      ${opt}
+    </button>`;
+  }).join('');
+
+  return `
+  <div class="test-top">
+    <div class="test-pb"><div class="test-pb-fill" style="width:${pct}%"></div></div>
+    <div class="test-pb-lbl">${ts.idx+1}/${total}</div>
+  </div>
+  <div class="test-q-card">
+    <div class="test-q-meta">
+      <span>📝 Pregunta ${ts.idx+1}</span>
+      <span class="test-q-badge">Semana ${q.w}</span>
+    </div>
+    <div class="test-q-text">${q.q}</div>
+  </div>
+  <div class="test-opts">${opts}</div>
+  ${answered ? `
+  <div style="padding:0 16px">
+    <div style="background:${chosen===q.ans?'rgba(91,168,122,.1)':'rgba(206,74,90,.08)'};border-radius:12px;padding:11px 13px;margin-bottom:12px;border-left:4px solid ${chosen===q.ans?'var(--ok)':'var(--err)'}">
+      <div style="font-size:12px;font-weight:800;margin-bottom:4px;color:${chosen===q.ans?'var(--ok)':'var(--err)'}">${chosen===q.ans?'✅ ¡Correcto!':'❌ Incorrecto — la respuesta es «'+q.opts[q.ans]+'»'}</div>
+      <div style="font-size:12px;font-weight:600;color:var(--ink2);line-height:1.5">${q.just}</div>
+    </div>
+    <button class="btn btn-p" onclick="nextTestQ()">${ts.idx < ts.questions.length-1 ? 'Siguiente pregunta ▶' : 'Ver resultados 🏁'}</button>
+  </div>` : ''}`;
+}
+
+function rTestDone() {
+  const ts = testSession;
+  const score = ts.questions.filter((q,i) => ts.chosen[i] === q.ans).length;
+  const total = ts.questions.length;
+  const pct = Math.round(score/total*100);
+  const emoji = pct >= 80 ? '🏆' : pct >= 60 ? '💪' : pct >= 40 ? '📚' : '🔄';
+  const msg = pct >= 80 ? '¡Excelente!' : pct >= 60 ? '¡Buen trabajo!' : pct >= 40 ? 'Sigue practicando' : 'A repasar gramática';
+
+  return `<div style="padding:16px">
+    <div class="test-score-c">
+      <div class="test-score-e">${emoji}</div>
+      <div class="test-score-n">${score}<span style="font-size:22px;color:var(--ink2)">/${total}</span></div>
+      <div class="test-score-lbl">${msg} · ${pct}% de aciertos</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px">
+        <div style="background:rgba(91,168,122,.14);border-radius:11px;padding:10px;text-align:center">
+          <div style="font-size:24px;font-weight:900;color:var(--ok)">${score}</div>
+          <div style="font-size:11px;font-weight:700;color:var(--ink2)">✅ Correctas</div>
+        </div>
+        <div style="background:rgba(206,74,90,.12);border-radius:11px;padding:10px;text-align:center">
+          <div style="font-size:24px;font-weight:900;color:var(--err)">${total-score}</div>
+          <div style="font-size:11px;font-weight:700;color:var(--ink2)">❌ Incorrectas</div>
+        </div>
+      </div>
+    </div>
+    <button class="btn btn-b" onclick="goReview()">🔍 Revisar respuestas con justificaciones</button>
+    <button class="btn btn-gh" onclick="goTo('home')">🏠 Volver al inicio</button>
+  </div>`;
+}
+
+function rTestReview() {
+  const ts = testSession;
+  const items = ts.questions.map((q, i) => {
+    const chosen = ts.chosen[i];
+    const ok = chosen === q.ans;
+    return `<div class="test-result-card ${ok?'ok':'err'}">
+      <div class="test-result-q">
+        <span style="font-size:16px;flex-shrink:0">${ok?'✅':'❌'}</span>
+        <span>${q.q}</span>
+      </div>
+      ${!ok ? `<div class="test-result-ans err">Tu respuesta: ${chosen!==undefined?q.opts[chosen]:'Sin responder'}</div><br>` : ''}
+      <div class="test-result-ans ok">✔ Respuesta correcta: ${q.opts[q.ans]}</div>
+      <div class="test-result-just">${q.just}</div>
+      ${q.gram ? `<button class="test-gram-link" onclick="goGramFromTest('${q.gram}')">📖 Ver en Gramática →</button>` : ''}
+    </div>`;
+  }).join('');
+
+  const score = ts.questions.filter((q,i) => ts.chosen[i] === q.ans).length;
+
+  return `<div class="hd"><h1>🔍 Revisión del test</h1><p>${score}/${ts.questions.length} correctas</p></div>
+  ${items}
+  <button class="btn btn-p" onclick="startTest()" style="margin:0 0 10px">🔄 Repetir test</button>
+  <button class="btn btn-gh" onclick="goTo('home')">🏠 Inicio</button>`;
+}
+
+S={startDate:null,streak:0,lastStudied:null,cardStates:{},totalCorrect:0,totalWrong:0,unlockedDay:1};saveState();screen='home';render();}
 
 // ─── SETUP ───
 function renderSetup() {
