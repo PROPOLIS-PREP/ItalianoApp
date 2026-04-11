@@ -1075,7 +1075,7 @@ const QUESTIONS = [
   {id:96,w:8,q:"¿Cuál es la diferencia entre «se potessi» y «se posso»?",opts:["ninguna, son sinónimas","potessi es más formal","potessi expresa hipótesis irreal/poco probable; posso expresa condición real","posso es pasado"],ans:2,just:"«Se posso» + presente/futuro = condición real (si puedo, lo hago). «Se potessi» + condizionale = hipótesis irreal o poco probable (si pudiera, haría). Es la diferencia entre el período hypothético real e irreal.",gram:"cond"},
 ];
 
-
+const PLAN = [
   {w:1,e:"👋",title:"¡Primeros pasos!",sub:"Saluti · Basi · Supervivencia",color:"#D4714A",bg:"rgba(212,113,74,.1)",
    days:[{d:"Días 1-2",t:"Saluti",c:"Ciao, grazie, prego, scusa, per favore."},{d:"Días 3-4",t:"Basi",c:"Sì, no, come stai, bene/male, non capisco, quanto costa."},{d:"Días 5-6",t:"Preguntas",c:"Dov'è, quando, chi, cosa. Las 4 preguntas de oro."},{d:"Día 7",t:"🔄 Repaso SRS",c:"La app te muestra automáticamente las tarjetas que toca. ¡15 min!"}]},
   {w:2,e:"🔢",title:"Números y familia",sub:"Numeri · Colori · Famiglia",color:"#4A7FB5",bg:"rgba(74,127,181,.1)",
@@ -1559,7 +1559,7 @@ function rTest() {
     ${[...(S.testLog||[])].reverse().slice(0,5).map(t=>`
       <div class="acc-row">
         <span style="font-size:12px">${t.date}</span>
-        <span class="acc-val" style="color:${t.score/t.total>=0.7?'var(--ok)':t.score/t.total>=0.5?'var(--gold)':'var(--err)';font-size:14px}">${t.score}/${t.total}</span>
+        <span class="acc-val" style="color:${t.score/t.total>=0.7?'var(--ok)':t.score/t.total>=0.5?'var(--gold)':'var(--err)'};font-size:14px">${t.score}/${t.total}</span>
       </div>`).join('')}
   </div>` : ''}
   <div style="background:rgba(201,154,46,.09);border-radius:14px;padding:12px 14px;margin-top:4px">
@@ -1666,7 +1666,7 @@ function rTestReview() {
   <button class="btn btn-gh" onclick="goTo('home')">🏠 Inicio</button>`;
 }
 
-S={startDate:null,streak:0,lastStudied:null,cardStates:{},totalCorrect:0,totalWrong:0,unlockedDay:1};saveState();screen='home';render();}
+function resetAll(){S={startDate:null,streak:0,lastStudied:null,cardStates:{},totalCorrect:0,totalWrong:0,unlockedDay:1};saveState();screen='home';render();}
 
 // ─── SETUP ───
 function renderSetup() {
