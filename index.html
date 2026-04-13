@@ -1460,15 +1460,58 @@ function getAvailableQuestions() {
 }
 
 function buildDailyTest() {
-  // Seed shuffle by date so each day same 10 questions (deterministic)
   const pool = getAvailableQuestions();
   const today = todayStr();
-  let seed = today.replace(/-/g,'').split('').reduce((a,c)=>a+c.charCodeAt(0),0);
-  const seeded = [...pool].sort((a,b) => {
-    seed = (seed * 1664525 + 1013904223) & 0xffffffff;
-    return (seed >>> 0) % 2 === 0 ? 1 : -1;
-  });
-  return seeded.slice(0, Math.min(10, seeded.length));
+
+  // S.testQueue: orden de ids ya aleatorizado y persistido
+  // S.testQueueIdx: siguiente posición a usar
+  // S.testQueueDate: fecha del último test (para no avanzar si se repite hoy)
+  S.testQueue = S.testQueue || [];
+  S.testQueueIdx = S.testQueueIdx || 0;
+
+  // Añadir al final de la cola preguntas nuevas que no estén ya en ella
+  // (por si se desbloqueó nueva semana)
+  const inQueue = new Set(S.testQueue);
+  const newOnes = pool.filter(q => !inQueue.has(q.id));
+  if (newOnes.length > 0) {
+    // Mezcla aleatoria de las nuevas y las añade al final
+    const shuffled = newOnes.sort(() => Math.random() - 0.5);
+    S.testQueue.push(...shuffled.map(q => q.id));
+  }
+
+  // Si el test de HOY ya fue iniciado, recuperar las mismas preguntas
+  if (S.testQueueDate === today && S.testDailyIds && S.testDailyIds.length > 0) {
+    const ids = new Set(S.testDailyIds);
+    return pool.filter(q => ids.has(q.id)).sort((a,b) =>
+      S.testDailyIds.indexOf(a.id) - S.testDailyIds.indexOf(b.id));
+  }
+
+  // Si es un día nuevo, tomar las siguientes 10 de la cola (cíclica)
+  const take = Math.min(10, pool.length);
+  const selectedIds = [];
+  const poolIds = new Set(pool.map(q => q.id));
+
+  for (let i = 0; i < take; i++) {
+    // Avanzar idx hasta encontrar una id que siga disponible (por si cambió pool)
+    let attempts = 0;
+    while (attempts < S.testQueue.length) {
+      const idx = S.testQueueIdx % S.testQueue.length;
+      const qid = S.testQueue[idx];
+      S.testQueueIdx++;
+      if (poolIds.has(qid) && !selectedIds.includes(qid)) {
+        selectedIds.push(qid);
+        break;
+      }
+      attempts++;
+    }
+  }
+
+  S.testQueueDate = today;
+  S.testDailyIds = selectedIds;
+  saveState();
+
+  return pool.filter(q => selectedIds.includes(q.id))
+             .sort((a,b) => selectedIds.indexOf(a.id) - selectedIds.indexOf(b.id));
 }
 
 function startTest() {
@@ -1489,11 +1532,12 @@ function nextTestQ() {
     testSession.idx++;
   } else {
     testSession.done = true;
-    // Save to test log
     const score = testSession.questions.filter((q,i) => testSession.chosen[i] === q.ans).length;
     S.testLog = S.testLog || [];
+    // Evitar duplicado si ya hay log de hoy
+    S.testLog = S.testLog.filter(t => t.date !== todayStr());
     S.testLog.push({ date: todayStr(), score, total: testSession.questions.length });
-    if (S.testLog.length > 30) S.testLog = S.testLog.slice(-30);
+    if (S.testLog.length > 60) S.testLog = S.testLog.slice(-60);
     saveState();
   }
   render();
@@ -1666,7 +1710,7 @@ function rTestReview() {
   <button class="btn btn-gh" onclick="goTo('home')">🏠 Inicio</button>`;
 }
 
-function resetAll(){S={startDate:null,streak:0,lastStudied:null,cardStates:{},totalCorrect:0,totalWrong:0,unlockedDay:1};saveState();screen='home';render();}
+function resetAll(){S={startDate:null,streak:0,lastStudied:null,cardStates:{},totalCorrect:0,totalWrong:0,unlockedDay:1,testQueue:[],testQueueIdx:0,testQueueDate:null,testDailyIds:[],testLog:[]};saveState();screen='home';render();}
 
 // ─── SETUP ───
 function renderSetup() {
